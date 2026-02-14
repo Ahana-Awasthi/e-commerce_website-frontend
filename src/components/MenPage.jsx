@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import "./FilterBar.css"; 
 import FilterBar from "./FilterBar";
+import { Menproducts } from "../data/seedProductsMen";
+
 
 function MenPage() {
   const [menProducts, setMenProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/api/men")
-      .then(res => res.json())
-      .then(data => {
-        setMenProducts(data);
-        setFilteredProducts(data); // initially show all
-      })
-      .catch(err => console.error(err));
-  }, []);
+useEffect(() => {
+  try {
+    setMenProducts(Menproducts);
+    setFilteredProducts(Menproducts); // initially show all
+  } catch (err) {
+    console.error("Error loading products:", err);
+  }
+}, []);
 
   return (
     <div className="d-flex">

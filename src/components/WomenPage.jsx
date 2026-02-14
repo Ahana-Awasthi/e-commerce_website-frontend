@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./FilterBar.css"; 
 import FilterBar from "./FilterBar";
 
+
 function WomenPage() {
   const [womenProducts, setWomenProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);

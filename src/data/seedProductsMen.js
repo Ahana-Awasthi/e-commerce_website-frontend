@@ -1,0 +1,56 @@
+
+
+const Menproducts = [
+    { name: "Men Regular Fit T-shirt", description: "POLO Men Regular Fit T-shirt", subCategory: "T-Shirts", category: "Men Shirts", originalPrice: 1800, discount: 70, price: 540, imageUrl: "https://i.postimg.cc/rdhzWgMF/mn1.png", inStock: true, color: "Green", size: " M , L" },
+    { name: "Men Solid Collar T-Shirts", description: "POLO Men Solid Collar T-Shirts", category: "Men Shirts", subCategory: "T-Shirts", originalPrice: 1150, discount: 40, price: 690, imageUrl: "https://i.postimg.cc/WD9trSTt/mn2.png", inStock: true, color: " Black ", size: "S , M" },
+    { name: "Men Casual Shirt", description: "BELLSTONE Men Casual Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 3795, discount: 80, price: 759, imageUrl: "https://i.postimg.cc/SXZj8Vks/mn3.png", inStock: true, color: " Grey ", size: "S , M " },
+    { name: "Men Formal Pant", description: "COMBRAIDED Men Formal Pant", category: "Men Bottomwear", subCategory: "Pants", originalPrice: 1191, discount: 30, price: 834, imageUrl: "https://i.postimg.cc/FfP1cGNH/mn4.png", inStock: true, color: " Beige ", size: " M , L" },
+    { name: "Men Regular Western Wear Shirt", description: "DENIM Men Regular Western Wear Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 6227, discount: 85, price: 934, imageUrl: "https://i.postimg.cc/K3TY62LK/mn40.png", inStock: true, color: " Blue ", size: " M " },
+    { name: "Men Regular Formal Shirt Cotton", description: "JIYA AND JAY Men Regular Formal Shirt Cotton", category: "Men Shirts", subCategory: "Shirts", originalPrice: 293, discount: 20, price: 234, imageUrl: "https://i.postimg.cc/9w9f6hTx/mn48.png", inStock: true, color: " Red ", size: "M, L" },
+    { name: "Men Casual Shirt", description: "WOXEN Men Casual Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 971, discount: 45, price: 534, imageUrl: "https://i.postimg.cc/5HPjvpbQ/mn7.png", inStock: true, color: " Blue ", size: "S , M , L" },
+    { name: "Men Slim Fit Collar Shirt Cotton", description: "DENIM Men Slim Fit Collar Shirt Cotton", category: "Men Shirts", subCategory: "Shirts", originalPrice: 513, discount: 15, price: 436, imageUrl: "https://i.postimg.cc/Y4Xjg8MY/mn8.png", inStock: true, color: " Blue ", size: "L, XL" },
+    { name: "Men Oversized Western T-shirt", description: "TRIPR Men Oversized Western T-shirt", category: "Men Shirts", subCategory: "T-Shirts", originalPrice: 815, discount: 59, price: 334, imageUrl: "https://i.postimg.cc/v1PD9Xb9/mn9.png", inStock: true, color: "Green ", size: "S, XL" },
+    { name: "Men Casual Woolen Shirt", description: "BELLSTONE Men Casual Woolen Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 2527, discount: 70, price: 758, imageUrl: "https://i.postimg.cc/f3HkX5Dv/mn10.png", inStock: true, color: " Green ", size: " L, XL" },
+    { name: "Men Casual Oversized Shirt", description: "DEEMOON Men Casual Oversized Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 914, discount: 50, price: 457, imageUrl: "https://i.postimg.cc/dkp1N17F/mn27.png", inStock: true, color: " White ", size: "M , L" },
+    { name: "Men Loose Fit Dark Blue Jeans", description: "SOUTHEE Men Loose Fit Dark Blue Jeans", category: "Men Bottomwear", subCategory: "Jeans", originalPrice: 1897, discount: 70, price: 569, imageUrl: "https://i.postimg.cc/d7WDdnwB/mn12.png", inStock: true, color: " Blue ", size: "S , M , L" },
+    { name: "Men Casual Loose Brown T-Shirt Cotton", description: "POLO Men Casual Loose Brown T-Shirt Cotton", category: "Men Shirts", subCategory: "T-Shirts", originalPrice: 1848, discount: 65, price: 647, imageUrl: "https://i.postimg.cc/R6yFpFWb/mn22.png", inStock: true, color: " Brown ", size: " L, XL, XXL" },
+    { name: "Men Regular Fit Formal Shirt", description: "JIYA AND JAY Men Regular Fit Formal Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 914, discount: 50, price: 457, imageUrl: "https://i.postimg.cc/9RKMgMDS/mn24.png", inStock: true, color: " White ", size: "S ,XL, XXL" },
+    { name: "Men Casual Lined White T-Shirt", description: "POLO Men Casual Lined White T-Shirt", category: "Men Shirts", subCategory: "T-Shirts", originalPrice: 1450, discount: 60, price: 580, imageUrl: "https://i.postimg.cc/XGmJ1JrT/mn25.png", inStock: true, color: " White ", size: "S , M " },
+    { name: "Men Casual Loose Fit Jeans", description: "COMBRAIDED Men Casual Loose Fit Jeans", category: "Men Bottomwear", subCategory: "Jeans", originalPrice: 774, discount: 10, price: 697, imageUrl: "https://i.postimg.cc/gXQJtJw9/mn26.png", inStock: true, color: " Black ", size: "S , M , L" },
+    { name: "Men Casual Western Shirt", description: "DEEMOON Men Casual Western Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 3868, discount: 75, price: 967, imageUrl: "https://i.postimg.cc/dkp1N17F/mn27.png", inStock: true, color: " Maroon ", size: "M , L" },
+    { name: "Men Printed Track Suit", description: "TRIPR Men Printed Track Suit", category: "Men Bottomwear", subCategory: "Track Suits", originalPrice: 1955, discount: 80, price: 391, imageUrl: "https://i.postimg.cc/WFC3Y3Dv/mn28.png", inStock: true, color: " Black ", size: "S , M " },
+    { name: "Men Socks", description: "DOLLAR Men Socks", category: "Men Accessories", subCategory: "Socks", originalPrice: 313, discount: 20, price: 250, imageUrl: "https://i.postimg.cc/SXZj8Vks/mn3.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Casual T-Shirt and Jeans Combo", description: "H&M Men Casual T-Shirt and Jeans Combo", category: "Men Combo", subCategory: "T-Shirt & Jeans", originalPrice: 8534, discount: 65, price: 2987, imageUrl: "https://i.postimg.cc/YGZ9D94r/mn30.png", inStock: true, color: " Beige ", size: "S , M , L" },
+    { name: "Men Regular Shorts", description: "UNIQLO Men Regular Shorts", category: "Men Bottomwear", subCategory: "Shorts", originalPrice: 800, discount: 30, price: 560, imageUrl: "https://i.postimg.cc/Q9wtYtBN/mn31.jpg", inStock: true, color: " White ", size: "S , M , L, XL" },
+    { name: "Men Casual Shorts", description: "CROSSFIT Men Casual Shorts", category: "Men Bottomwear", subCategory: "Shorts", originalPrice: 1117, discount: 40, price: 670, imageUrl: "https://i.postimg.cc/DJHZpZW8/mn32.png", inStock: true, color: " Black ", size: "S , M , L" },
+    { name: "Men Loose Fit Checked Shirt", description: "DEEMOON Men Loose Fit Checked Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 796, discount: 20, price: 637, imageUrl: "https://i.postimg.cc/8J95X5F5/mn33.png", inStock: true, color: " Blue ", size: "S , M , L" },
+    { name: "Men Casual Western Shorts", description: "ADIDAS Men Casual Western Shorts", category: "Men Bottomwear", subCategory: "Shorts", originalPrice: 1012, discount: 45, price: 557, imageUrl: "https://i.postimg.cc/zb6B2BLL/mn34.png", inStock: true, color: " Grey ", size: "S , M , L" },
+    { name: "Men's Kurta with Churidar Pyjama", description: "ETHLUXIS Men's Kurta with Churidar Pyjama", category: "Men Ethnic", subCategory: "Kurta Pyjama", originalPrice: 3176, discount: 75, price: 794, imageUrl: "https://i.postimg.cc/KkwzpzK3/mn36.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men's Kurta Regular Cotton Blend", description: "SWAGG INDIA Men's Kurta Regular Cotton Blend", category: "Men Ethnic", subCategory: "Kurta", originalPrice: 603, discount: 25, price: 452, imageUrl: "https://i.postimg.cc/m19rvsMg/mn37.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Regular Fit Beach Shirt", description: "MADHAVISTA Men Regular Fit Beach Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 536, discount: 15, price: 456, imageUrl: "https://i.postimg.cc/YLFS5HgS/mn38.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Casual Oversized Shirt", description: "POLO Men Casual Oversized Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 1314, discount: 50, price: 657, imageUrl: "https://i.postimg.cc/bSnv7hbN/mn39.jpg", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Kurta and Pyjama Combo Cotton", description: "SWAGG INDIA Men Kurta and Pyjama Combo Cotton", category: "Men Ethnic", subCategory: "Kurta Pyjama", originalPrice: 3788, discount: 75, price: 947, imageUrl: "https://i.postimg.cc/FfP1cGNH/mn4.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Winter Wear Full Sleeve Jacket", description: "BOLDFIT Men Winter Wear Full Sleeve Jacket", category: "Men Jackets", subCategory: "Winter Jackets", originalPrice: 1305, discount: 65, price: 499, imageUrl: "https://i.postimg.cc/K3TY62LK/mn40.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men's Slim Fit Jacket", description: "VOXATI Men's Slim Fit Jacket", category: "Men Jackets", subCategory: "Jackets", originalPrice: 1031, discount: 45, price: 567, imageUrl: "https://i.postimg.cc/ct3JpSY3/mn42.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men's Casual Jacket", description: "VOXATI Men's Casual Jacket", category: "Men Jackets", subCategory: "Jackets", originalPrice: 1897, discount: 70, price: 569, imageUrl: "https://i.postimg.cc/5QzthVvC/mn43.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Casual Loose Brown T-Shirt Cotton", description: "POLO Men Casual Loose Brown T-Shirt Cotton", category: "Men Shirts", subCategory: "T-Shirts", originalPrice: 1848, discount: 65, price: 647, imageUrl: "https://i.postimg.cc/GTDpWCYk/mn44.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Regular Fit Formal Shirt", description: "JIYA AND JAY Men Regular Fit Formal Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 914, discount: 50, price: 457, imageUrl: "https://i.postimg.cc/bSnv7hb3/mn45.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Casual Lined White T-Shirt", description: "POLO Men Casual Lined White T-Shirt", category: "Men Shirts", subCategory: "T-Shirts", originalPrice: 1450, discount: 60, price: 580, imageUrl: "https://i.postimg.cc/vxnmJs9h/mn46.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Casual Loose Fit Jeans", description: "COMBRAIDED Men Casual Loose Fit Jeans", category: "Men Bottomwear", subCategory: "Jeans", originalPrice: 774, discount: 10, price: 697, imageUrl: "https://i.postimg.cc/9w9f6hTx/mn48.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Casual Western Shirt", description: "DEEMOON Men Casual Western Shirt", category: "Men Shirts", subCategory: "Shirts", originalPrice: 3868, discount: 75, price: 967, imageUrl: "https://i.postimg.cc/K434knVX/mn49.png", inStock: true, color: " White ", size: "S , M , L" },
+    { name: "Men Printed Track Suit", description: "TRIPR Men Printed Track Suit", category: "Men Bottomwear", subCategory: "Track Suits", originalPrice: 1955, discount: 80, price: 391, imageUrl: "https://i.postimg.cc/rzRz0Sb2/mn50.png", inStock: true, color: " White ", size: "S , M , L" }
+];
+
+export { Menproducts };
+
+
+
+
+
+
+
+
+
+
+
+
