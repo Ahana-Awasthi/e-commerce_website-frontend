@@ -54,5 +54,4 @@ const WomenProducts = [
 
 
 
-seedWomenProducts();
 export { WomenProducts };

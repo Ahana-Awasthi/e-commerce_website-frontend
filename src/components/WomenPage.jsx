@@ -1,35 +1,32 @@
 import { useState, useEffect } from "react";
 import "./FilterBar.css"; 
 import FilterBar from "./FilterBar";
-
+import { WomenProducts as WomenData } from "../data/seedProductsWomen"; // rename import
 
 function WomenPage() {
-  const [womenProducts, setWomenProducts] = useState([]);
+  const [womenProducts, setWomenProducts] = useState([]); // lowercase for state
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/women")
-      .then(res => res.json())
-      .then(data => {
-        setWomenProducts(data);
-        setFilteredProducts(data); // initially show all
-      })
-      .catch(err => console.error("Error fetching women products:", err));
+    try {
+      setWomenProducts(WomenData); // use the imported data
+      setFilteredProducts(WomenData); // initially show all
+    } catch (err) {
+      console.error("Error loading women products:", err);
+    }
   }, []);
 
   return (
     <div className="d-flex">
-      {/* FilterBar with category="Women" */}
       <FilterBar 
         products={womenProducts} 
         setFilteredProducts={setFilteredProducts} 
         category="Women"
       />
 
-      {/* Product Grid */}
       <div className="card-grid-big">
-        {filteredProducts.map(product => (
-          <div key={product._id} className="product-card">
+        {filteredProducts.map((product, index) => (
+          <div key={index} className="product-card">
             <img
               src={product.imageUrl}
               alt={product.name}
