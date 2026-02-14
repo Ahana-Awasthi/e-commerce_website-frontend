@@ -26,7 +26,7 @@ function MenPage() {
         {filteredProducts.map(product => (
           <div key={product._id} className="product-card">
             <img
-              src={`http://localhost:3000${product.imageUrl}`}
+              src={product.imageUrl}
               alt={product.name}
               className="product-image"
             />
