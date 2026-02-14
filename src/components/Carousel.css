@@ -1,0 +1,348 @@
+.carousel-item {
+  position: relative;
+}
+
+.carousel-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgb(0, 0, 0), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.carousel-caption {
+  z-index: 2;
+}
+
+/* cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 30px;
+  padding: 50px 20px;
+  background: linear-gradient(to top, rgb(77, 76, 76), transparent);
+}
+
+.product-card {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 300px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.product-image {
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+  aspect-ratio: 2/3;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.product-card:hover {
+  cursor: pointer;
+  box-shadow: 10px 10px 10px rgba(105, 104, 104, 0.484);
+}
+
+.product-details {
+  background-color: #fff;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-details {
+  transform: translateY(-30px);
+}
+
+.product-image:hover {
+  transform: scale(1.1);
+}
+
+.card-grid-big {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding: 50px 30px;
+  background: linear-gradient(to top, rgb(77, 76, 76), transparent);
+}
+
+/* hero */
+.broad {
+  background-image: url("../assets/bg.png");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  position: relative;
+}
+
+.broad::before {
+  background:
+    linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.778) 10%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(100, 100, 100, 0.512) 0%,
+      rgba(0, 0, 0, 0.9) 90%
+    );
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.broad-img {
+  position: absolute;
+  bottom: 0;
+  left: 60px;
+  max-width: 40%;
+  height: auto;
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 3rem;
+  right: 2rem;
+  color: #fff;
+  text-align: right;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.hero-text h3 {
+  margin: 0.5rem 0;
+}
+
+.home-btn-cta {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: white;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.home-btn-cta:hover {
+  background: #b3b1b1c0;
+  border: 1px solid #272626c0;
+  color: #fff;
+}
+
+.fredericka-the-great-regular {
+  font-family: "Fredericka the Great", serif;
+  font-size: 80px;
+}
+
+@media (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding: 40px 20px;
+  }
+
+  .card-grid-big {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 40px 15px;
+  }
+
+  .broad {
+    height: 400px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .broad-img {
+    left: 40px;
+    max-width: 35%;
+  }
+}
+
+@media (max-width: 992px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 30px 15px;
+  }
+
+  .card-grid-big {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 30px 15px;
+  }
+
+  .product-image {
+    aspect-ratio: 1/1.4;
+  }
+
+  .fredericka-the-great-regular {
+    font-size: 60px;
+  }
+
+  .broad {
+    height: 350px;
+  }
+
+  .hero-text {
+    bottom: 2rem;
+    right: 1.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text h3 {
+    font-size: 1rem;
+  }
+
+  .broad-img {
+    left: 30px;
+    max-width: 30%;
+  }
+
+  .home-btn-cta {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 20px 40px;
+  }
+
+  .card-grid-big {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px 40px;
+  }
+
+  .product-card {
+    min-height: 200px;
+  }
+
+  .product-image {
+    aspect-ratio: 1/1.2;
+  }
+
+  .fredericka-the-great-regular {
+    font-size: 45px;
+  }
+
+  .broad {
+    height: 280px;
+    margin: 20px 0;
+  }
+
+  .hero-text {
+    bottom: 1.5rem;
+    right: 1rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-text h3 {
+    font-size: 0.85rem;
+    margin: 0.3rem 0;
+  }
+
+  .broad-img {
+    left: 20px;
+    max-width: 25%;
+  }
+
+  .home-btn-cta {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .product-details {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px 10px;
+  }
+
+  .card-grid-big {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px 10px;
+  }
+
+  .product-card {
+    min-height: 180px;
+  }
+
+  .product-image {
+    aspect-ratio: 1/1.2;
+  }
+
+  .fredericka-the-great-regular {
+    font-size: 28px;
+    margin-top: 1rem !important;
+  }
+
+  .broad {
+    height: 220px;
+    margin: 15px 0;
+  }
+
+  .hero-text {
+    bottom: 1rem;
+    right: 0.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-text h3 {
+    font-size: 0.7rem;
+    margin: 0.2rem 0;
+  }
+
+  .broad-img {
+    left: 15px;
+    max-width: 20%;
+  }
+
+  .home-btn-cta {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+
+  .product-details {
+    padding: 5px;
+    font-size: 0.75rem;
+  }
+}
