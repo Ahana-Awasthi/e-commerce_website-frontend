@@ -1,0 +1,116 @@
+.scroll-card {
+  width: 400px;
+  height: 400px;
+  border-radius: 10px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.card {
+  border-radius: 10px;
+  height: 100%;
+  position: relative;
+}
+
+.card-gradient {
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.81),
+    rgb(186, 186, 186)
+  );
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.card-image {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.scroll-btn {
+  background-color: rgba(0, 0, 0, 0.748) !important;
+  backdrop-filter: blur(4px);
+  color: #fff !important;
+  font-size: 4rem !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 10 !important;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.scroll-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .scroll-card {
+    width: 300px;
+    height: 300px;
+  }
+
+  .scroll-btn {
+    font-size: 2rem !important;
+    width: 45px !important;
+    height: 45px !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .scroll-card {
+    width: 250px;
+    height: 250px;
+  }
+
+  .scroll-btn {
+    font-size: 1.5rem !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-card {
+    width: 200px;
+    height: 200px;
+    margin: 0 8px !important;
+  }
+
+  .scroll-btn {
+    font-size: 1.2rem !important;
+    width: 35px !important;
+    height: 35px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-card {
+    width: 150px;
+    height: 150px;
+    margin: 0 5px !important;
+  }
+
+  .scroll-btn {
+    font-size: 1rem !important;
+    width: 30px !important;
+    height: 30px !important;
+  }
+}

@@ -1,0 +1,153 @@
+.filter-bar {
+  min-width: 300px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  text-align: left;
+  font-family: sans-serif;
+  border: 1px solid #0b0b0b;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.filter-section label {
+  display: block;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.size-options button {
+  margin: 5px;
+  padding: 8px 15px;
+  border: 1px solid #000;
+  background: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #000;
+  /* Ensure text is black by default */
+}
+
+.size-options button:hover {
+  background: #000;
+  color: #fff;
+}
+
+.selected-size {
+  background: #000 !important;
+  /* Force black background */
+  color: #fff !important;
+  /* Force white text for visibility */
+}
+
+.color-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.color-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  cursor: pointer;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+  border-color: #000;
+  background-clip: padding-box;
+}
+
+.selected-color {
+  border: 3px solid #000000;
+  /* Bold border for selection */
+}
+
+.range-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.range-container input[type="range"] {
+  width: 100%;
+}
+
+.range-badge {
+  background: #565656;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  position: absolute;
+  top: -30px;
+  /* Position above the slider */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  /* Prevent interaction */
+}
+
+.range-badge::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  /* Arrow pointing down to the slider */
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #000;
+  /* Black arrow */
+}
+
+.range-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-top: 10px;
+  /* Space below the slider */
+}
+
+/* Buttons container */
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Apply / Cancel buttons */
+.apply-btn,
+.cancel-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.apply-btn {
+  background: #000;
+  color: #fff;
+}
+
+.apply-btn:hover {
+  background: #353535;
+}
+
+.cancel-btn {
+  background: #ddd;
+}
+
+.cancel-btn:hover {
+  background: #bbb;
+}
