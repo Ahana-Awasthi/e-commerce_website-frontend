@@ -1,0 +1,364 @@
+/* Flipkart-Inspired User Profile Page */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
+  background-color: #f1f3f6;
+}
+
+.flipkart-container {
+  min-height: 100vh;
+  background-color: #f1f3f6;
+}
+
+/* Main Content */
+.main-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+  width: 100%;
+}
+
+.content-header {
+  margin-bottom: 24px;
+}
+
+.content-header h1 {
+  font-size: 24px;
+  color: #212121;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.content-header p {
+  font-size: 14px;
+  color: #878787;
+}
+
+.content-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cards */
+.info-card,
+.order-history-card {
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.card-header-section {
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-header-section h2 {
+  font-size: 18px;
+  color: #212121;
+  font-weight: 500;
+}
+
+/* Form Container */
+.form-container {
+  padding: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  margin-bottom: 16px;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 12px;
+  color: #878787;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  color: #878787;
+  pointer-events: none;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+  width: 100%;
+  padding: 10px 12px 10px 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  font-size: 14px;
+  color: #212121;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+  outline: none;
+  border-color: #2874f0;
+  box-shadow: 0 0 0 2px rgba(40, 116, 240, 0.1);
+}
+
+.input-wrapper input:disabled,
+.input-wrapper select:disabled {
+  background-color: #fafafa;
+  color: #878787;
+  cursor: not-allowed;
+}
+
+.input-wrapper select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23878787' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.input-wrapper select:disabled {
+  cursor: not-allowed;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #2874f0;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #1c5db8;
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: #2874f0;
+  border: 1px solid #e0e0e0;
+}
+
+.btn-secondary:hover {
+  background-color: #f5f5f5;
+}
+
+/* Order History */
+.order-history-card {
+  max-height: 650px;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.order-item:hover {
+  background-color: #fafafa;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.order-details {
+  flex: 1;
+}
+
+.order-details h3 {
+  font-size: 14px;
+  color: #212121;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.order-details p {
+  font-size: 12px;
+  color: #878787;
+  margin: 2px 0;
+}
+
+.order-id {
+  font-weight: 500;
+}
+
+.order-price {
+  color: #212121;
+  font-weight: 600;
+}
+
+.order-arrow {
+  color: #878787;
+  flex-shrink: 0;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  color: #878787;
+}
+
+.empty-icon {
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+
+.empty-state p {
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-history-card {
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .flipkart-container {
+    flex-direction: column;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+
+  .content-header h1 {
+    font-size: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-header h1 {
+    font-size: 18px;
+  }
+
+  .card-header-section {
+    padding: 16px;
+  }
+
+  .form-container {
+    padding: 16px;
+  }
+
+  .order-item {
+    padding: 12px 16px;
+  }
+
+  .order-image {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Scrollbar Styling */
+.order-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.order-list::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+.order-list::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 3px;
+}
+
+.order-list::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+.logout-btn {
+  padding: 30px 70px;
+  border-radius: 50px;
+  margin-left: 40vw;
+  margin-bottom: 20px;
+  font-size: 18px;
+}

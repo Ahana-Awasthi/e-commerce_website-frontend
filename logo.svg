@@ -1,0 +1,14 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#0F0F0F"/>
+
+  <!-- Bag -->
+  <rect x="16" y="24" width="32" height="24" rx="6" fill="#D4AF37"/>
+
+  <!-- Handle -->
+  <path d="M22 24C22 18 26 14 32 14C38 14 42 18 42 24" 
+        stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Center mark -->
+  <circle cx="32" cy="36" r="4" fill="#0F0F0F"/>
+</svg>

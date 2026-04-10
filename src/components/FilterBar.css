@@ -1,20 +1,56 @@
+.page-container {
+  display: flex;
+  gap: 20px; /* space between sidebar and products */
+}
+
+/* Sidebar wrapper controls height & sticky */
+.sidebar-wrapper {
+  flex-shrink: 0; /* don't shrink */
+  width: 350px; /* desired sidebar width */
+  max-height: calc(100vh - 150px); /* adjust top/bottom if needed */
+  position: sticky;
+  top: 150px; /* distance from top of viewport */
+  overflow-y: auto;
+}
+.accordion-body {
+  padding-left: 200px;
+  background: #f9f9f9;
+}
+/* Filter bar inside fills wrapper */
 .filter-bar {
-  min-width: 300px;
   padding: 20px;
   background: #fff;
   border-radius: 10px;
-  text-align: left;
-  font-family: sans-serif;
-  border: 1px solid #0b0b0b;
+  border: 3px solid #0b0b0b;
+  
+  min-width: 100%;
+}
+.filter-section {
+border: 1px solid;
+border-radius: 10px;
+
+}
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+= .chevron {
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
-.filter-section {
-  margin-bottom: 20px;
+.chevron.open {
+  transform: rotate(180deg);
 }
+
 
 .filter-section h4 {
-  margin-bottom: 10px;
-  font-weight: 600;
+  font-weight: 1000;
+  font-family : roboto;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .filter-section label {
@@ -118,13 +154,6 @@
   /* Space below the slider */
 }
 
-/* Buttons container */
-.filter-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
 /* Apply / Cancel buttons */
 .apply-btn,
 .cancel-btn {
@@ -146,8 +175,19 @@
 
 .cancel-btn {
   background: #ddd;
+  margin-left: 50px;
 }
 
 .cancel-btn:hover {
   background: #bbb;
+}
+.color-circle.selected {
+  border: 3px solid #9292ff;
+}
+// Men Page CSS
+.pr-card {
+  width: 200px;
+  padding: 10px;
+  margin: 80px 0;
+  background: #641212;
 }

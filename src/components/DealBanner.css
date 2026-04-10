@@ -1,0 +1,86 @@
+/* Main Banner */
+.deal-banner {
+  width: 100%;
+  min-height: 300px;
+
+  background-image: url("../assets/slide_back.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  color: white;
+}
+
+/* Dark Overlay */
+.deal-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(to top, rgba(77, 76, 76, 0.16), transparent);
+}
+
+/* Content */
+.deal-content {
+  position: relative;
+  z-index: 2;
+
+  padding: 20px;
+}
+
+/* Subtitle */
+.deal-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #2e8deb;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+/* Title */
+.deal-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: #08083a;
+  font-weight: 800;
+  font-family: "Fredericka the Great", serif;
+  margin-bottom: 10px;
+}
+
+/* Typing Text */
+.deal-typing {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  margin-bottom: 18px;
+
+  color: #49a2fc;
+  font-weight: 700;
+}
+
+/* Button */
+.deal-btn {
+  display: inline-block;
+
+  padding: 10px 26px;
+
+  background: #ffc107;
+  color: #000;
+
+  border-radius: 25px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: 0.3s ease;
+}
+
+.deal-btn:hover {
+  background: #ffca2c;
+  transform: translateY(-2px);
+}
