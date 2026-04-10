@@ -44,7 +44,7 @@ const Chatbot = () => {
 
       setIsLoadingOrders(true);
       try {
-        const response = await axios.get("http://localhost:3000/api/orders", {
+        const response = await axios.get("https://e-commerce-website-backend-d84m.onrender.com/api/orders", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setOrders(response.data.orders || []);
@@ -464,7 +464,7 @@ const Chatbot = () => {
       if (token && selectedOrder) {
         axios
           .post(
-            `http://localhost:3000/api/cancel-order/${selectedOrder}`,
+            `https://e-commerce-website-backend-d84m.onrender.com/api/cancel-order/${selectedOrder}`,
             { immediate: true },
             { headers: { Authorization: `Bearer ${token}` } },
           )
@@ -484,7 +484,7 @@ const Chatbot = () => {
       if (token && selectedOrder) {
         axios
           .post(
-            `http://localhost:3000/api/return-order/${selectedOrder}`,
+            `https://e-commerce-website-backend-d84m.onrender.com/api/return-order/${selectedOrder}`,
             { reason: formData.orderIssueDes || "" },
             { headers: { Authorization: `Bearer ${token}` } },
           )
@@ -504,7 +504,7 @@ const Chatbot = () => {
       if (token && selectedOrder) {
         axios
           .post(
-            `http://localhost:3000/api/exchange-order/${selectedOrder}`,
+            `https://e-commerce-website-backend-d84m.onrender.com/api/exchange-order/${selectedOrder}`,
             { reason: formData.orderIssueDes || "" },
             { headers: { Authorization: `Bearer ${token}` } },
           )

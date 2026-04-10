@@ -19,7 +19,7 @@ function BeautyPage() {
   // Load beauty products
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/api/beauty")
+    fetch("https://e-commerce-website-backend-d84m.onrender.com/api/beauty")
       .then((res) => res.json())
       .then((data) => {
         const beautyOnly = data.filter((p) =>

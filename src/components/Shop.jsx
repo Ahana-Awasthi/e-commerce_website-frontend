@@ -45,7 +45,7 @@ function Shop() {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    fetch("http://localhost:3000/api/wishlist", {
+    fetch("https://e-commerce-website-backend-d84m.onrender.com/api/wishlist", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -64,7 +64,7 @@ function Shop() {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    fetch("http://localhost:3000/api/cart", {
+    fetch("https://e-commerce-website-backend-d84m.onrender.com/api/cart", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -82,7 +82,7 @@ function Shop() {
   // 1️⃣ Fetch all products
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:3000/api/${category}`)
+    fetch(`https://e-commerce-website-backend-d84m.onrender.com/api/${category}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched products:", data); // <--- add this
@@ -264,7 +264,7 @@ function Shop() {
                       );
 
                       const res = await fetch(
-                        "http://localhost:3000/api/wishlist",
+                        "https://e-commerce-website-backend-d84m.onrender.com/api/wishlist",
                         {
                           method: isWishlisted ? "DELETE" : "POST",
                           headers: {
@@ -365,7 +365,7 @@ function Shop() {
                         try {
                           // Always call POST /cart — backend handles "already in cart" by incrementing quantity
                           const res = await fetch(
-                            "http://localhost:3000/api/cart",
+                            "https://e-commerce-website-backend-d84m.onrender.com/api/cart",
                             {
                               method: "POST",
                               headers: {

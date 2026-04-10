@@ -81,7 +81,7 @@ export default function Profile() {
           return;
         }
 
-        const response = await axios.get("http://localhost:3000/api/orders", {
+        const response = await axios.get("https://e-commerce-website-backend-d84m.onrender.com/api/orders", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -140,7 +140,7 @@ export default function Profile() {
         return;
       }
 
-      const response = await fetch("http://localhost:3000/api/profile", {
+      const response = await fetch("https://e-commerce-website-backend-d84m.onrender.com/api/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -19,7 +19,7 @@ function MenPage() {
   // Load men products
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/api/men")
+    fetch("https://e-commerce-website-backend-d84m.onrender.com/api/men")
       .then((res) => res.json())
       .then((data) => {
         const menOnly = data.filter((p) =>

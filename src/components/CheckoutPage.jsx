@@ -49,7 +49,7 @@ export default function CheckoutPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/products");
+        const res = await axios.get("https://e-commerce-website-backend-d84m.onrender.com/api/products");
         setProducts(res.data || []);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -103,7 +103,7 @@ export default function CheckoutPage() {
     try {
       const fullAddress = `${editedAddress.city}, ${editedAddress.state}`;
       await axios.put(
-        "http://localhost:3000/api/profile",
+        "https://e-commerce-website-backend-d84m.onrender.com/api/profile",
         {
           name: editedAddress.fullName,
           phone: editedAddress.phone,

@@ -15,17 +15,17 @@ export default function Cart() {
     hoverSoundRef.current.volume = 1;
   }, []);
   const navigate = useNavigate();
- const playSound = () => {
-   const audio = hoverSoundRef.current;
-   if (!audio) return;
+  const playSound = () => {
+    const audio = hoverSoundRef.current;
+    if (!audio) return;
 
-   audio.currentTime = 0;
-   audio.volume = 1;
+    audio.currentTime = 0;
+    audio.volume = 1;
 
-   // fake louder perception
-   audio.play();
-   audio.play().catch(() => {});
- };
+    // fake louder perception
+    audio.play();
+    audio.play().catch(() => {});
+  };
   const {
     cart,
     updateCartQuantity,
@@ -42,7 +42,7 @@ export default function Cart() {
     const fetchProducts = async () => {
       try {
         const productsRes = await axios.get(
-          "http://localhost:3000/api/products",
+          "https://e-commerce-website-backend-d84m.onrender.com/api/products",
         );
         setProducts(productsRes.data || []);
       } catch (err) {

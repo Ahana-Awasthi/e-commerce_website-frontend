@@ -19,7 +19,7 @@ function KidsPage() {
   // Load kids products
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/api/kids")
+    fetch("https://e-commerce-website-backend-d84m.onrender.com/api/kids")
       .then((res) => res.json())
       .then((data) => {
         const kidsOnly = data.filter((p) =>

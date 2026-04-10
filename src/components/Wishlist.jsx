@@ -431,7 +431,7 @@ const Wishlist = () => {
 
         // Wishlist has items - fetch products
         const productsRes = await axios.get(
-          "http://localhost:3000/api/products",
+          "https://e-commerce-website-backend-d84m.onrender.com/api/products",
         );
         setProducts(productsRes.data);
         setLoading(false);

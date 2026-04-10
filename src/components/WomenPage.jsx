@@ -20,7 +20,7 @@ function WomenPage() {
   // Load women products
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/api/women")
+    fetch("https://e-commerce-website-backend-d84m.onrender.com/api/women")
       .then((res) => res.json())
       .then((data) => {
         const womenOnly = data.filter((p) =>

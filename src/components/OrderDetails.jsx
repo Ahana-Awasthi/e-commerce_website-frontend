@@ -243,7 +243,7 @@ const OrderPage = () => {
         }
 
         const response = await axios.get(
-          `http://localhost:3000/api/orders/${orderId}`,
+          `https://e-commerce-website-backend-d84m.onrender.com/api/orders/${orderId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           },
@@ -257,7 +257,7 @@ const OrderPage = () => {
           response.data.order.products.length > 0
         ) {
           const productsRes = await axios.get(
-            "http://localhost:3000/api/products",
+            "https://e-commerce-website-backend-d84m.onrender.com/api/products",
           );
           const productMap = {};
           productsRes.data.forEach((p) => {

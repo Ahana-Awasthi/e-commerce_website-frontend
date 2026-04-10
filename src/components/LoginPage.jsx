@@ -111,7 +111,7 @@ const Auth = () => {
         await login(email, password);
         showToast("Login successful! Redirecting...");
         setTimeout(() => navigate("/dashboard"), 500);
-        fetch("http://localhost:3000/api/send-email", {
+        fetch("https://e-commerce-website-backend-d84m.onrender.com/api/send-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -136,7 +136,7 @@ The MyApp Team`,
         // Sign up new user
         if (password !== confirmPassword) {
           showToast("Passwords do not match!", true);
-          fetch("http://localhost:3000/api/send-email", {
+          fetch("https://e-commerce-website-backend-d84m.onrender.com/api/send-email", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -159,7 +159,7 @@ The MyApp Team`,
           return;
         }
 
-        const res = await axios.post("http://localhost:3000/api/register", {
+        const res = await axios.post("https://e-commerce-website-backend-d84m.onrender.com/api/register", {
           name,
           email,
           password,
@@ -169,7 +169,7 @@ The MyApp Team`,
 
         console.log("Registration response:", res.data); // debug
         showToast("Registration successful! Please login.");
-        fetch("http://localhost:3000/users/welcome-email", {
+        fetch("https://e-commerce-website-backend-d84m.onrender.com/users/welcome-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: email, name: name }),

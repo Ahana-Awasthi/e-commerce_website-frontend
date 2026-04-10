@@ -19,7 +19,7 @@ function HomeProducts() {
   // Load home products
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/api/home")
+    fetch("https://e-commerce-website-backend-d84m.onrender.com/api/home")
       .then((res) => res.json())
       .then((data) => {
         const homeOnly = data.filter((p) =>
