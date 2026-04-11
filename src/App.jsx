@@ -52,13 +52,35 @@ function Home() {
 function AppContent() {
   const { isLoading } = useContext(AuthContext);
   const token = localStorage.getItem("token");
+  const [showFilters, setShowFilters] = useState(false);
+const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const toggleFilters = () => {
+    setShowFilters((prev) => !prev);
+  };
+ useEffect(() => {
+   const handleResize = () => {
+     const mobile = window.innerWidth <= 768;
+     setIsMobile(mobile);
 
+     // auto behavior:
+     if (!mobile)
+       setShowFilters(true); // desktop ALWAYS show
+     else setShowFilters(false); // mobile default hidden
+   };
+
+   handleResize(); // run once on load
+   window.addEventListener("resize", handleResize);
+
+   return () => window.removeEventListener("resize", handleResize);
+ }, []);
+
+  const shouldShowFilters = !isMobile || showFilters;
   return (
     <>
       <ScrollToTop />
       <NavBar />
       <div style={{ backgroundColor: "#f8f9fa" }}>
-        <CategoriesNav />
+        <CategoriesNav toggleFilters={toggleFilters} showFilters={showFilters}/>
       </div>
 
       <Routes>
@@ -69,7 +91,16 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/Shop/:type" element={<Shop />} />
+        <Route
+          path="/Shop/:type"
+          element={
+            <Shop
+              showFilters={showFilters}
+              toggleFilters={toggleFilters}
+              shouldShowFilters={shouldShowFilters}
+            />
+          }
+        />{" "}
         <Route
           path="/order-details/:orderId"
           element={
@@ -87,13 +118,11 @@ function AppContent() {
         <Route path="/Beauty" element={<BeautyPage />} />
         <Route path="/Home" element={<HomePage />} />
         <Route path="/Electronics" element={<ElectronicsPage />} />
-
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/Chatbot" element={<Chatbot />} />
-
         <Route
           path="/dashboard"
           element={

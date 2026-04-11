@@ -506,8 +506,9 @@ function FilterBar({
     setPendingColor([]);
     setPendingDiscount(0);
     setPendingAvailability(false);
-
+    
     setAppliedFilters(cleared);
+    setIsFilterActive(false); // 🔥 THIS IS MISSING IN MOST CASES
   };
   // APPLY pending filters
   const handleApplyFilter = () => {
@@ -519,6 +520,7 @@ function FilterBar({
       discount: pendingDiscount,
       availability: pendingAvailability,
     });
+    setIsFilterActive(true); // 🔥 THIS IS MISSING IN MOST CASES
   };
   // Ensure all products are shown initially, before any filters/search
 
@@ -554,7 +556,10 @@ function FilterBar({
                 {openSection === "category" && (
                   <div className="accordion-body">
                     {subCategoryOptions.map((subCat) => (
-                      <label key={subCat} style={{ fontSize: "18px" }}>
+                      <label
+                        key={subCat}
+                        style={{ fontSize: "18px", paddingLeft: 50 }}
+                      >
                         <input
                           type="checkbox"
                           checked={pendingSubCategory[subCat]}
@@ -589,7 +594,7 @@ function FilterBar({
                 </span>
               </h4>
               {openSection === "price" && (
-                <div className="accordion-body">
+                <div className="accordion-body" style={{ padding: 30 }}>
                   <div className="range-container" style={{ marginTop: 50 }}>
                     <span className="range-badge" style={{ fontSize: "14px" }}>
                       ₹{pendingPrice}
@@ -628,7 +633,10 @@ function FilterBar({
                   </span>
                 </h4>
                 {openSection === "size" && (
-                  <div className="accordion-body size-options">
+                  <div
+                    className="accordion-body size-options"
+                    style={{ padding: 8 }}
+                  >
                     {sizeOptions.map((size) => (
                       <button
                         key={size}
@@ -664,7 +672,7 @@ function FilterBar({
                 {openSection === "color" && (
                   <div
                     className="accordion-body color-options"
-                    style={{ marginTop: 20 }}
+                    style={{ marginTop: 20, padding: 20 }}
                   >
                     {colorOptions.map((color, i) => (
                       <div
@@ -703,7 +711,7 @@ function FilterBar({
                 </span>
               </h4>
               {openSection === "discount" && (
-                <div className="accordion-body">
+                <div className="accordion-body" style={{ padding: 30 }}>
                   <div className="range-container" style={{ marginTop: 50 }}>
                     <span className="range-badge" style={{ fontSize: "14px" }}>
                       {pendingDiscount}%
@@ -744,7 +752,7 @@ function FilterBar({
                 </span>
               </h4>
               {openSection === "availability" && (
-                <div className="accordion-body">
+                <div className="accordion-body" style={{ padding: 30 }}>
                   <label style={{ fontSize: "18px" }}>
                     <input
                       type="checkbox"

@@ -48,23 +48,9 @@ function ProductGrid() {
       color: "Black",
       size: "S, M",
     },
+
     {
       _id: 4,
-      name: "Kids Regular T-Shirt",
-      description:
-        "Boys & Girls Cartoon Polycotton Regular T Shirt (Black, Pack of 1)",
-      category: "Kids",
-      subCategory: "T-Shirt",
-      originalPrice: 299,
-      discount: 10,
-      price: 269,
-      imageUrl: "https://i.ibb.co/bjWzxZZr/kid13.png",
-      inStock: true,
-      color: "Black",
-      size: "9 - 12 Years",
-    },
-    {
-      _id: 5,
       name: "Women Wide Leg Stretchable Jeans",
       description: "Women Loose Fit High Rise Wide Leg Stretchable Jeans",
       category: "Women Western",
@@ -91,7 +77,7 @@ function ProductGrid() {
   ];
 
   return (
-    <>
+    <div className="card-section">
       <h1 className="fredericka-the-great-regular text-center mt-5">
         Trade Up Your Wardrobe
       </h1>
@@ -103,15 +89,11 @@ function ProductGrid() {
           products.slice(0, 6).map((product, index) => {
             const randomTag = tags[Math.floor(Math.random() * tags.length)];
             return (
-              <div
-                key={product._id || index}
-                style={product.style}
-                className="product-card"
-              >
+              <div key={product._id || index} className="product-card">
                 <img
                   src={product.imageUrl}
                   alt={product.name}
-                  style={{ width: "230px" }}
+                  style={{ minWidth: "260px" }}
                   className="product-image"
                 />
                 <div className="product-details">
@@ -158,7 +140,7 @@ function ProductGrid() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

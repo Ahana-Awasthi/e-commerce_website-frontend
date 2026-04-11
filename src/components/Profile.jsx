@@ -54,11 +54,7 @@ export default function Profile() {
   };
 
   const [originalProfile, setOriginalProfile] = useState({
-    firstName: localStorage.getItem("userName")?.split(" ")[0] || "John",
-    lastName:
-      localStorage.getItem("userName")?.split(" ")[
-        localStorage.getItem("userName")?.split(" ").length - 1
-      ] || "Doe",
+    name: localStorage.getItem("userName"),
     mobile: localStorage.getItem("userPhone"),
     email: localStorage.getItem("userEmail"),
     address:
@@ -131,7 +127,7 @@ export default function Profile() {
     setIsSaving(true);
 
     try {
-      const fullName = `${profile.firstName} ${profile.lastName}`;
+      const fullName = `${profile.name}`;
       const token = localStorage.getItem("token");
 
       if (!token) {
@@ -170,11 +166,9 @@ export default function Profile() {
 
       localStorage.setItem("userLanguage", profile.language);
 
-      const nameParts = data.user.name.split(" ").filter((n) => n.length > 0);
 
       const updatedProfile = {
-        firstName: nameParts[0] || "",
-        lastName: nameParts[nameParts.length - 1] || "",
+        name: data.user.name,
         email: data.user.email,
         mobile: data.user.phone,
         address: data.user.address,
@@ -223,8 +217,10 @@ export default function Profile() {
       <div className="flipkart-container">
         <main className="main-content">
           <div className="content-header">
-            <h1>Account Settings</h1>
-            <p>Edit your personal details and view order history.</p>
+            <h1 style={{ textAlign: "center" }}>Account Settings</h1>
+            <p style={{ textAlign: "center" }}>
+              Edit your personal details and view order history.
+            </p>
           </div>
 
           <div className="content-grid">
@@ -236,7 +232,7 @@ export default function Profile() {
               <div className="form-container">
                 <div className="form-row">
                   <div className="input-group">
-                    <label style={{ marginRight: 80 }}>First Name</label>
+                    <label style={{ marginRight: 80 }}>Full Name</label>
                     <div className="input-wrapper">
                       <svg
                         className="input-icon"
@@ -254,9 +250,9 @@ export default function Profile() {
                       </svg>
                       <input
                         type="text"
-                        name="firstName"
+                        name="name"
                         style={{ width: 250 }}
-                        value={profile.firstName}
+                        value={profile.name}
                         onChange={handleInputChange}
                         readOnly={!isEditing}
                         placeholder="Enter your first name"
@@ -264,36 +260,7 @@ export default function Profile() {
                     </div>
                   </div>
 
-                  <div className="input-group">
-                    <label style={{ marginLeft: 20, marginRight: 30 }}>
-                      Last Name
-                    </label>
-                    <div className="input-wrapper">
-                      <svg
-                        className="input-icon"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                      <input
-                        type="text"
-                        name="lastName"
-                        style={{ width: 250 }}
-                        value={profile.lastName}
-                        onChange={handleInputChange}
-                        readOnly={!isEditing}
-                        placeholder="Enter your last name"
-                      />
-                    </div>
-                  </div>
+                  
                 </div>
 
                 <div className="input-group">
@@ -596,9 +563,17 @@ export default function Profile() {
             </section>
           </div>
         </main>
-        <button className="btn-primary logout-btn" onClick={handleLogout}>
-          Log Out
-        </button>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <button className="btn-primary logout-btn" onClick={handleLogout}>
+            Log Out
+          </button>
+        </div>
       </div>
     </>
   );

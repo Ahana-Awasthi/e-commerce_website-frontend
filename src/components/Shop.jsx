@@ -5,24 +5,25 @@ import "./Dashboard.css";
 import FilterBar from "./FilterBar";
 import Loading from "./Loading";
 import NavBar from "./Nav";
+import CategoriesNav from "./CategoriesNav";
 
 function ProductImage({ src, alt }) {
   const [imgSrc, setImgSrc] = useState(src);
   const placeholder = "https://placehold.co/160x250?text=Loading...";
-
+  const [showFilters, setShowFilters] = useState(false);
   return (
     <img
       src={imgSrc}
       alt={alt}
       className="product-image"
-      style={{ width: "230px" }}
+      style={{ minWidth: "200px", height: "100%", minHeight: 350 }}
       onError={() => setImgSrc(placeholder)}
       loading="lazy"
     />
   );
 }
 
-function Shop() {
+function Shop({ showFilters, toggleFilters, shouldShowFilters }) {
   const { type } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -82,7 +83,9 @@ function Shop() {
   // 1️⃣ Fetch all products
   useEffect(() => {
     setLoading(true);
-    fetch(`https://e-commerce-website-backend-d84m.onrender.com/api/${category}`)
+    fetch(
+      `https://e-commerce-website-backend-d84m.onrender.com/api/${category}`,
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched products:", data); // <--- add this
@@ -152,7 +155,9 @@ function Shop() {
   if (loading) return <Loading />;
 
   // Only show all products if no search/filter is active
-  const hasActiveSearch = searchArray.length > 0 || isFilterActive;
+  const hasActiveSearch =
+    searchArray.length > 0 ||
+    filteredProducts.length !== productsInCategory.length;
   const productsToDisplay =
     filteredProducts.length > 0
       ? filteredProducts
@@ -214,17 +219,26 @@ function Shop() {
 
   return (
     <>
-      <NavBar searchInput={searchInput} setSearchInput={setSearchInput} />
-
+      <NavBar
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        toggleFilters={toggleFilters}
+      />
+      <CategoriesNav
+        showFilters={showFilters}
+        toggleFilters={toggleFilters}
+      />
       <div className="d-flex">
-        <FilterBar
-          category={type}
-          products={productsInCategory}
-          setFilteredProducts={setFilteredProducts}
-          searchArray={searchArray}
-          setNoProductsReason={setNoProductsReason}
-          setIsFilterActive={setIsFilterActive}
-        />
+        {shouldShowFilters && (
+          <FilterBar
+            category={type}
+            products={productsInCategory}
+            setFilteredProducts={setFilteredProducts}
+            searchArray={searchArray}
+            setNoProductsReason={setNoProductsReason}
+            setIsFilterActive={setIsFilterActive}
+          />
+        )}
 
         <div className="card-grid-big">
           {productsToDisplay.length > 0 ? (
@@ -237,16 +251,7 @@ function Shop() {
                 {/* Wishlist Button - Top Right */}
                 <button
                   className="wishlist-btn"
-                  style={{
-                    position: "absolute",
-                    top: "40px",
-                    left: "200px",
-                    zIndex: 10,
-                    borderRadius: "60%",
-                    padding: "7px",
-                    width: "45px",
-                    background: "white",
-                  }}
+                 
                   onClick={async (e) => {
                     e.stopPropagation();
 

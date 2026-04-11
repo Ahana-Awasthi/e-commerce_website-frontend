@@ -356,9 +356,10 @@ body {
 }
 
 .logout-btn {
-  padding: 30px 70px;
+  padding: 10px 40px;
   border-radius: 50px;
-  margin-left: 40vw;
+  margin-top: 50px;
   margin-bottom: 20px;
+  width: 30%;
   font-size: 18px;
 }

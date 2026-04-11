@@ -302,7 +302,7 @@ function Section({
           >
             <div className="product-cards-dashboard">
               {/* Image */}
-              <div className="product-image-box">
+              <div className="product-image-box"> 
                 <img src={item.img} alt={item.name} />
               </div>
 

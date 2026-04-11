@@ -22,20 +22,42 @@
   background: #fff;
   border-radius: 10px;
   border: 3px solid #0b0b0b;
-  
+
   min-width: 100%;
 }
-.filter-section {
-border: 1px solid;
-border-radius: 10px;
+/* FilterBar.css */
 
+@media (max-width: 768px) {
+  .sidebar-wrapper {
+    display: block;
+  }
+}
+.filter-section {
+  border: 1px solid;
+  border-radius: 10px;
+}
+@media (max-width: 768px) {
+  .sidebar-wrapper {
+    position: fixed;
+    top: 1;
+    left: 0;
+    max-width: 80%;
+    height: 75vh;
+    max-height: 100vh;
+    background: white;
+    z-index: 9999;
+    overflow-y: auto;
+
+    /* optional: animation feel */
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2);
+  }
 }
 .accordion-header {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
 }
-= .chevron {
+.chevron {
   display: inline-block;
   transition: transform 0.3s ease;
 }
@@ -44,10 +66,9 @@ border-radius: 10px;
   transform: rotate(180deg);
 }
 
-
 .filter-section h4 {
   font-weight: 1000;
-  font-family : roboto;
+  font-family: roboto;
   border: 1px solid;
   border-radius: 10px;
   padding: 10px;

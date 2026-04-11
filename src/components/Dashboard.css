@@ -1,8 +1,3 @@
-body {
-  overflow-x: hidden;
-}
-
-
 .vibe-border {
   border: 3px solid #0d6efd;
 
@@ -81,21 +76,70 @@ body {
     box-shadow: 0 0 16px rgba(13, 110, 253, 0.8);
   }
 }
-
-/* Section Title */
-.section-title {
-  letter-spacing: 1px;
-  border-left: 4px solid #ffc107;
-  padding-left: 10px;
+.icon-wrapper {
+  position: relative;
+  display: inline-flex;
 }
 
-.wishlist-btn {
+.badge {
   position: absolute;
-  left: 100px;
-  padding: 6px;
+  top: 4px;
+  right: 70px;
+
+  background: #e74c3c;
+  color: white;
   border-radius: 50%;
-  width: 45px;
-  border: none;
+
+  width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  font-weight: bold;
+}
+.badge-cart {
+  position: absolute;
+  top: -13px;
+  right: 15px;
+
+  background: #e74c3c;
+  color: white;
+  border-radius: 50%;
+
+  width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  .badge {
+    top: -10px;
+    right: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .badge-cart {
+    top: -1000px;
+    right: 90px;
+    position: absolute;
+
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    font-size: 11px;
+    font-weight: bold;
+  }
 }
 /* Product Card */
 .product-card {
@@ -103,33 +147,34 @@ body {
   border-radius: 14px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: 0.25s ease;
-  max-height: 1000px;
-
-  min-width: 260px;
+  width: 100%;
+  height: 100%;
+  display: grid ;
+  grid-template-columns: repeat(1, 1fr);
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .product-card:hover {
   transform: translateY(-4px);
-  position: relative;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  max-height: 1100px;
 }
 .dashboard-cards-container {
   border-radius: 14px;
-border: 1px solid #e0e0e0;
-padding: 10px;
-
+  border: 1px solid #e0e0e0;
+  padding: 10px;
 }
 .product-card-dashboard {
   background: #fff;
   border-radius: 14px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: 0.25s ease;
-  max-height: 400px;
 
-  min-width: 260px;
+  width: 100%;
+  min-height: 320px;
+
+  display: flex;
+  flex-direction: column;
 }
-
 .product-card-dashboard:hover {
   transform: translateY(-4px);
   position: relative;
@@ -140,21 +185,15 @@ padding: 10px;
   border-radius: 14px;
   position: relative;
   transition: 0.25s ease;
-  max-width: 260px;
-  display: flex;
+  max-width: none;
+  display: block;
   justify-content: space-between;
 }
 /* Image Box */
-.product-image-box {
-  align-items: center;
-  justify-content: center;
-  height: 300px;
-  width: 900px;
-}
 .product-image-box img {
-  width: 30%;
+  width: 100%;
   height: 100%;
-  margin-left: 40px;
+  min-height: 400px;
 }
 .cart-icons {
   display: flex;
@@ -178,8 +217,9 @@ padding: 10px;
 }
 
 /* Desktop icons container */
-.categories-desktop {
+.categories-top {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -189,7 +229,21 @@ padding: 10px;
   align-items: center;
   cursor: pointer;
 }
+.wishlist-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
 
+  z-index: 10;
+  border-radius: 50%;
+  padding: 6px;
+  width: 42px;
+
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* Categories links */
 .categories-links {
   display: flex; /* desktop default */
@@ -233,6 +287,9 @@ padding: 10px;
   .categories-links li a {
     font-size: 1rem;
   }
+  .product-cards-dashboard {
+    margin-left: 50px;
+  }
 }
 
 /* Mobile */
@@ -274,6 +331,37 @@ padding: 10px;
   }
   .categories-links.active + .extra {
     height: 0; /* collapse extra space when menu opens */
+  }
+    .product-cards-dashboard {
+    margin-left: 70px;
+  }
+}
+
+.card-grid-big {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+}
+
+/* slightly smaller screens */
+@media (max-width: 1200px) {
+  .card-grid-big {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* tablet */
+@media (max-width: 768px) {
+  .card-grid-big {
+    grid-template-columns: repeat(2, 1fr);
+    min-width: 100vw;
+  }
+}
+
+/* mobile */
+@media (max-width: 480px) {
+  .card-grid-big {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 .extra {

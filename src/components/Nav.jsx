@@ -44,7 +44,8 @@ export default function NavBar({ searchInput, setSearchInput }) {
     if (currentPath.includes("/shop/women")) currentCategory = "Shop/Women";
     else if (currentPath.includes("/shop/men")) currentCategory = "Shop/Men";
     else if (currentPath.includes("/shop/kids")) currentCategory = "Shop/Kids";
-    else if (currentPath.includes("/Sshop/beauty")) currentCategory = "Shop/Beauty";
+    else if (currentPath.includes("/Sshop/beauty"))
+      currentCategory = "Shop/Beauty";
     else if (currentPath.includes("/shop/electronics"))
       currentCategory = "Shop/Electronics";
     else if (currentPath.includes("shop/home")) currentCategory = "Shop/Home";
@@ -166,13 +167,37 @@ export default function NavBar({ searchInput, setSearchInput }) {
           </button>
           <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
             <li>
-              <Link to="/about">About</Link>
+              <Link
+                style={{ color: "white", marginLeft: "30vw" }}
+                to="/about"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                }}
+              >
+                About
+              </Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link
+                to="/contact"
+                style={{ color: "white" }}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                }}
+              >
+                Contact
+              </Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link
+                to="/login"
+                style={{ color: "white" }}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                }}
+              >
+                Login
+              </Link>
             </li>
           </ul>
         </>

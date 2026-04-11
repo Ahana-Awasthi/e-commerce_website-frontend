@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import toggleIcon from "../assets/toggle-icon.png";
 import "./Dashboard.css";
 
-function CategoriesNav() {
+function CategoriesNav({ toggleFilters, showFilters }) {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const path = location.pathname;
   // Resize Effect
   useEffect(() => {
     const handleResize = () => {
@@ -23,7 +22,13 @@ function CategoriesNav() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
+  const showFilterButton =
+    path.includes("Men") ||
+    path.includes("Women") ||
+    path.includes("Kids") ||
+    path.includes("Home") ||
+    path.includes("Electronics") ||
+    path.includes("Beauty");
   // Fetch cart and wishlist counts
   const fetchCounts = async () => {
     const token = localStorage.getItem("token");
@@ -38,9 +43,12 @@ function CategoriesNav() {
         fetch("https://e-commerce-website-backend-d84m.onrender.com/api/cart", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch("https://e-commerce-website-backend-d84m.onrender.com/api/wishlist", {
-          headers: { Authorization: `Bearer ${token}` },
-        }),
+        fetch(
+          "https://e-commerce-website-backend-d84m.onrender.com/api/wishlist",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        ),
       ]);
 
       if (cartRes.ok) {
@@ -70,9 +78,12 @@ function CategoriesNav() {
       const token = localStorage.getItem("token");
       if (!token) return;
       try {
-        const res = await fetch("https://e-commerce-website-backend-d84m.onrender.com/api/cart", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await fetch(
+          "https://e-commerce-website-backend-d84m.onrender.com/api/cart",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
         if (res.ok) {
           const data = await res.json();
           setCartCount(data.cart ? data.cart.length : 0);
@@ -86,9 +97,12 @@ function CategoriesNav() {
       const token = localStorage.getItem("token");
       if (!token) return;
       try {
-        const res = await fetch("https://e-commerce-website-backend-d84m.onrender.com/api/wishlist", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await fetch(
+          "https://e-commerce-website-backend-d84m.onrender.com/api/wishlist",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
         if (res.ok) {
           const data = await res.json();
           setWishlistCount(data.wishlist ? data.wishlist.length : 0);
@@ -125,16 +139,12 @@ function CategoriesNav() {
     setIsCategoriesOpen(false);
   };
 
-  const toggleFilterBar = () => {
-    setIsFilterOpen(!isFilterOpen);
-  };
-
   return (
     <>
       <div
         className="categories-nav bg-dark-subtle"
         style={{
-          marginTop: isCategoriesOpen ? "-20px" : "-2px",
+          marginTop: "10px",
           cursor: "pointer",
         }}
       >
@@ -147,9 +157,23 @@ function CategoriesNav() {
               className={`fa-solid ${isCategoriesOpen ? "fa-xmark" : "fa-bars"}`}
             ></i>
           </button>
-          <button className="filter-toggle-btn mx-3" onClick={toggleFilterBar}>
-            <i className="fa-solid fa-sliders fs-4 text-dark"></i>
-          </button>
+          {showFilterButton && (
+            <button
+              className="filter-toggle-btn mx-3"
+              style={{
+                border: "2px solid",
+                background: "none",
+                width: 100,
+                borderRadius: 10,
+              }}
+              onClick={() => {
+                console.log("toggleFilters:", toggleFilters);
+                toggleFilters();
+              }}
+            >
+              {showFilters ? "Hide Filters" : "Show Filters"}{" "}
+            </button>
+          )}
           {/* Mobile Icons */}
           <div className="cart-icons">
             <div style={{ position: "relative", display: "inline-block" }}>
@@ -166,9 +190,6 @@ function CategoriesNav() {
               {wishlistCount > 0 && (
                 <span
                   style={{
-                    position: "absolute",
-                    top: "-8px",
-                    right: "0px",
                     backgroundColor: "#e74c3c",
                     color: "white",
                     borderRadius: "50%",
@@ -180,6 +201,7 @@ function CategoriesNav() {
                     fontSize: "11px",
                     fontWeight: "bold",
                   }}
+                  className="badge"
                 >
                   {wishlistCount}
                 </span>
@@ -195,6 +217,7 @@ function CategoriesNav() {
                     navigate("/cart");
                   }
                 }}
+                style={{ marginTop: -200 }}
               ></i>
               {cartCount > 0 && (
                 <span
@@ -221,34 +244,73 @@ function CategoriesNav() {
           </div>
         </div>
 
-        <ul className={`categories-links ${isCategoriesOpen ? "active" : ""}`}>
+        <ul
+          className={`categories-links ${isCategoriesOpen ? "active" : ""}`}
+          style={{ marginTop: -5 }}
+        >
           <li>
-            <Link to="/Shop/Men" className="text-dark">
+            <Link
+              to="/Shop/Men"
+              className="text-dark"
+              onClick={() => {
+                setIsCategoriesOpen("");
+              }}
+            >
               Men
             </Link>
           </li>
           <li>
-            <Link to="/Shop/Women" className="text-dark">
+            <Link
+              to="/Shop/Women"
+              className="text-dark"
+              onClick={() => {
+                setIsCategoriesOpen("");
+              }}
+            >
               Women
             </Link>
           </li>
           <li>
-            <Link to="/Shop/Kids" className="text-dark">
+            <Link
+              to="/Shop/Kids"
+              className="text-dark"
+              onClick={() => {
+                setIsCategoriesOpen("");
+              }}
+            >
               Kids
             </Link>
           </li>
           <li>
-            <Link to="/Shop/Beauty" className="text-dark">
+            <Link
+              to="/Shop/Beauty"
+              className="text-dark"
+              onClick={() => {
+                setIsCategoriesOpen("");
+              }}
+            >
               Beauty
             </Link>
           </li>
           <li>
-            <Link to="/Shop/Home" className="text-dark">
+            <Link
+              to="/Shop/Home"
+              className="text-dark"
+              onClick={() => {
+                setIsCategoriesOpen("");
+              }}
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link to="/Shop/Electronics" className="text-dark">
+            <Link
+              to="/Shop/Electronics"
+              className="text-dark"
+              onClick={() => {
+                setIsCategoriesOpen("");
+              }}
+            >
               Electronics
             </Link>
           </li>
@@ -257,23 +319,30 @@ function CategoriesNav() {
         {/* Desktop Icons */}
         <div className="categories-desktop">
           <div>
-            <div style={{ position: "relative", display: "inline-block" }}>
-              <i
-                className="fa-solid fa-heart fs-4 mx-4 text-dark pt-3"
-                onClick={() => {
-                  if (!token) {
-                    navigate("/login");
-                  } else {
-                    navigate("/wishlist");
-                  }
-                }}
-              ></i>
+            <div
+              style={{
+                position: "relative",
+                display: "flex",
+                width: 200,
+                height: 20,
+              }}
+            >
+              <div style={{ marginLeft: 70 }}>
+                <i
+                  className="fa-solid fa-heart fs-4 mx-4 text-dark pt-3"
+                  onClick={() => {
+                    if (!token) {
+                      navigate("/login");
+                    } else {
+                      navigate("/wishlist");
+                    }
+                  }}
+                ></i>
+              </div>
               {wishlistCount > 0 && (
                 <span
                   style={{
                     position: "absolute",
-                    top: 3,
-                    right: 13,
                     backgroundColor: "#e74c3c",
                     color: "white",
                     borderRadius: "50%",
@@ -285,43 +354,31 @@ function CategoriesNav() {
                     fontSize: "11px",
                     fontWeight: "bold",
                   }}
+                  className="badge"
                 >
                   {wishlistCount}
                 </span>
               )}
             </div>
-            <div style={{ position: "relative", display: "inline-block" }}>
-              <i
-                className="fa-solid fa-cart-shopping fs-4 text-dark"
-                onClick={() => {
-                  if (!token) {
-                    navigate("/login");
-                  } else {
-                    navigate("/cart");
-                  }
-                }}
-              ></i>
-              {cartCount > 0 && (
-                <span
-                  style={{
-                    position: "absolute",
-                    top: -13,
-                    right: -10,
-                    backgroundColor: "#e74c3c",
-                    color: "white",
-                    borderRadius: "50%",
-                    width: "20px",
-                    height: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "11px",
-                    fontWeight: "bold",
+            <div
+              style={{
+                position: "relative",
+              }}
+            >
+              {" "}
+              <div style={{ marginLeft: 150 }}>
+                <i
+                  className="fa-solid fa-cart-shopping fs-4 text-dark"
+                  onClick={() => {
+                    if (!token) {
+                      navigate("/login");
+                    } else {
+                      navigate("/cart");
+                    }
                   }}
-                >
-                  {cartCount}
-                </span>
-              )}
+                ></i>
+              </div>
+              {cartCount > 0 && <span className="badge-cart">{cartCount}</span>}
             </div>
           </div>
         </div>

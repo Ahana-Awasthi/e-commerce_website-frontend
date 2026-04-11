@@ -121,8 +121,8 @@
 }
 
 /
-/* Navbar base */
-.navbar {
+  /* Navbar base */
+  .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -167,29 +167,35 @@
 .hamburger {
   background: none;
   border: none;
+  color: black;
   font-size: 1.6rem;
   cursor: pointer;
 }
-
+.categories-links li a {
+  text-decoration: none;
+  color: #212529 !important;
+  font-weight: 500;
+}
 /* Nav links */
 .nav-links {
   list-style: none;
   display: flex;
   align-items: center;
   gap: 30px;
+  color: black;
   margin: 0;
   padding: 0;
 }
 
 .nav-links li a {
-  text-decoration: none;
   color: #000;
   font-weight: 500;
   transition: 0.2s ease;
 }
 
 .nav-links li a:hover {
-  color: #0d6efd;
+  color: blue;
+  text-decoration: underline;
 }
 
 /* Profile button */
@@ -235,13 +241,20 @@
 
   .nav-links.active {
     display: flex;
+    color: white;
+    background: #353434;
   }
 
   .nav-links li {
     text-align: center;
     padding: 10px 0;
+    color: black;
   }
-
+  .nav-links li a:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    color: blue;
+  }
   /* Search input smaller on mobile but leave space */
   .search-input {
     font-size: 0.9rem;
