@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     try {
       // Fetch cart data
       try {
-        const cartRes = await axios.get("http://localhost:3000/api/cart", {
+        const cartRes = await axios.get("https://e-commerce-website-backend-d84m.onrender.com/api/cart", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const cartData = Array.isArray(cartRes.data.cart)
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
       // Fetch wishlist data
       try {
         const wishlistRes = await axios.get(
-          "http://localhost:3000/api/wishlist",
+          "https://e-commerce-website-backend-d84m.onrender.com/api/wishlist",
           {
             headers: { Authorization: `Bearer ${token}` },
           },
@@ -147,7 +147,7 @@ export const AuthProvider = ({ children }) => {
   // Login function
   const login = async (email, password) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/login", {
+      const res = await axios.post("https://e-commerce-website-backend-d84m.onrender.com/api/login", {
         email,
         password,
       });
@@ -199,7 +199,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/cart",
+        "https://e-commerce-website-backend-d84m.onrender.com/api/cart",
         { productId },
         {
           headers: { Authorization: `Bearer ${auth.token}` },
@@ -236,7 +236,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await axios({
         method: isWishlisted ? "DELETE" : "POST",
-        url: "http://localhost:3000/api/wishlist",
+        url: "https://e-commerce-website-backend-d84m.onrender.com/api/wishlist",
         data: { productId },
         headers: { Authorization: `Bearer ${auth.token}` },
       });
@@ -262,7 +262,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const res = await axios.put(
-        "http://localhost:3000/api/cart",
+        "https://e-commerce-website-backend-d84m.onrender.com/api/cart",
         { productId, quantity },
         {
           headers: { Authorization: `Bearer ${auth.token}` },
@@ -293,7 +293,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const res = await axios.delete("http://localhost:3000/api/cart", {
+      const res = await axios.delete("https://e-commerce-website-backend-d84m.onrender.com/api/cart", {
         data: { productId },
         headers: { Authorization: `Bearer ${auth.token}` },
       });
@@ -319,7 +319,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/order",
+        "https://e-commerce-website-backend-d84m.onrender.com/api/order",
         orderData,
         {
           headers: { Authorization: `Bearer ${auth.token}` },
@@ -347,7 +347,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      await axios.delete("http://localhost:3000/api/cart/clear", {
+      await axios.delete("https://e-commerce-website-backend-d84m.onrender.com/api/cart/clear", {
         headers: { Authorization: `Bearer ${auth.token}` },
       });
       setCart([]);
