@@ -35,10 +35,10 @@ function CategoriesNav() {
 
     try {
       const [cartRes, wishlistRes] = await Promise.all([
-        fetch("http://localhost:3000/api/cart", {
+        fetch("https://e-commerce-website-backend-d84m.onrender.com/api/cart", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch("http://localhost:3000/api/wishlist", {
+        fetch("https://e-commerce-website-backend-d84m.onrender.com/api/wishlist", {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -70,7 +70,7 @@ function CategoriesNav() {
       const token = localStorage.getItem("token");
       if (!token) return;
       try {
-        const res = await fetch("http://localhost:3000/api/cart", {
+        const res = await fetch("https://e-commerce-website-backend-d84m.onrender.com/api/cart", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.ok) {
@@ -86,7 +86,7 @@ function CategoriesNav() {
       const token = localStorage.getItem("token");
       if (!token) return;
       try {
-        const res = await fetch("http://localhost:3000/api/wishlist", {
+        const res = await fetch("https://e-commerce-website-backend-d84m.onrender.com/api/wishlist", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.ok) {
