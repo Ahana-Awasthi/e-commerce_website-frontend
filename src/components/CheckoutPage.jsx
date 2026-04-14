@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import NavBar from "./Nav";
 import "./CheckoutPage.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axios";
 import { AuthContext } from "../context/AuthContext";
 import {
   CodConfirmationPopup,
@@ -49,7 +49,9 @@ export default function CheckoutPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("https://e-commerce-website-backend-d84m.onrender.com/api/products");
+        const res = await api.get(
+          "https://e-commerce-website-backend-d84m.onrender.com/api/products",
+        );
         setProducts(res.data || []);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -102,7 +104,7 @@ export default function CheckoutPage() {
     setIsSaving(true);
     try {
       const fullAddress = `${editedAddress.city}, ${editedAddress.state}`;
-      await axios.put(
+      await api.put(
         "https://e-commerce-website-backend-d84m.onrender.com/api/profile",
         {
           name: editedAddress.fullName,
@@ -308,10 +310,13 @@ export default function CheckoutPage() {
                       <input
                         type="text"
                         value={
-                          isEditing ? editedAddress.phone : deliveryAddress.phone
+                          isEditing
+                            ? editedAddress.phone
+                            : deliveryAddress.phone
                         }
                         onChange={(e) =>
-                          isEditing && handleInputChange("phone", e.target.value)
+                          isEditing &&
+                          handleInputChange("phone", e.target.value)
                         }
                         readOnly={!isEditing}
                       />
@@ -343,7 +348,8 @@ export default function CheckoutPage() {
                               : deliveryAddress.city
                           }
                           onChange={(e) =>
-                            isEditing && handleInputChange("city", e.target.value)
+                            isEditing &&
+                            handleInputChange("city", e.target.value)
                           }
                           readOnly={!isEditing}
                         />
@@ -358,7 +364,8 @@ export default function CheckoutPage() {
                               : deliveryAddress.state
                           }
                           onChange={(e) =>
-                            isEditing && handleInputChange("state", e.target.value)
+                            isEditing &&
+                            handleInputChange("state", e.target.value)
                           }
                           readOnly={!isEditing}
                         />
@@ -443,10 +450,11 @@ export default function CheckoutPage() {
                             )}
                           </div>
                           <div className="quantity-section">
-                            <span className="quantity-label">Qty: {item.qty}</span>
+                            <span className="quantity-label">
+                              Qty: {item.qty}
+                            </span>
                             <span className="item-total">
-                              ₹
-                              {(item.price * item.qty).toLocaleString("en-IN")}
+                              ₹{(item.price * item.qty).toLocaleString("en-IN")}
                             </span>
                           </div>
                         </div>

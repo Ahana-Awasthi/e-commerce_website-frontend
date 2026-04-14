@@ -1,153 +1,257 @@
 /* Section wrapper */
 .about-vadilal-section {
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 500px;
-    transition: background 0.8s ease;
-    cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+  transition: background 0.8s ease;
+  cursor: pointer;
+}
+.work-banner-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 12px;
+  background: transparent;
+}
+.work-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.work-popup {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-left: 6px solid #ff9800;
+
+  padding: 16px 22px;
+  border-radius: 12px;
+
+  max-width: 700px;
+  width: 100%;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  text-align: center;
+}
+
+.work-popup .icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.work-popup h2 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.work-popup p {
+  margin: 6px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.work-popup .subtext {
+  font-size: 13px;
+  color: #777;
+}
+.actions {
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.home-btn {
+  background: #ff9800;
+  color: white;
+
+  border: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  max-width: 500px;
+  padding: 6px 14px;
+  text-align: center;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  transition: all 0.2s ease;
+}
+.home-btn:hover {
+  background: #e68900;
+  transform: translateY(-1px);
+}
+
+.status {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.status span {
+  background: #f2f2f2;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
 /* Central oval / glass container */
 .about-oval {
-    background: rgba(0, 0, 0, 0.466);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(11, 11, 11, 0.25);
-    border-radius: 50% / 50%;
-    padding: 50px 35px;
-    text-align: center;
-    color: #f1f1f1;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    transition: all 1s ease;
-    max-width: 900px;
-    width: auto;
+  background: rgba(0, 0, 0, 0.466);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(11, 11, 11, 0.25);
+  border-radius: 50% / 50%;
+  padding: 50px 35px;
+  text-align: center;
+  color: #f1f1f1;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 1s ease;
+  max-width: 900px;
+  width: auto;
 }
 
 /* Hover: morph into rectangle */
 .about-vadilal-section:hover .about-oval {
-    width: 90%;
-    border-radius: 200px 0px 200px 0px;
-    padding: 40px 30px;
-    background: rgba(4, 4, 4, 0.493);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  width: 90%;
+  border-radius: 200px 0px 200px 0px;
+  padding: 40px 30px;
+  background: rgba(4, 4, 4, 0.493);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Heading */
 .about-heading {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    transition: transform 0.6s ease, text-shadow 0.6s ease;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  transition:
+    transform 0.6s ease,
+    text-shadow 0.6s ease;
 }
 
 .about-vadilal-section:hover .about-heading {
-    transform: scale(1.05);
-    text-shadow: 2px 2px 10px rgba(234, 230, 230, 0.716);
+  transform: scale(1.05);
+  text-shadow: 2px 2px 10px rgba(234, 230, 230, 0.716);
 }
 
 /* Subheading */
 .about-subheading {
-    font-size: 1.5rem;
-    color: #e0e0e0;
-    margin-bottom: 15px;
-    transition: opacity 0.6s ease;
+  font-size: 1.5rem;
+  color: #e0e0e0;
+  margin-bottom: 15px;
+  transition: opacity 0.6s ease;
 }
 
 .about-vadilal-section:hover .about-subheading {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* Paragraph (hidden until hover) */
 .about-paragraph {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 700px;
-    margin: 0 auto;
-    color: #f5f5f5;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    display: none;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #f5f5f5;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  display: none;
 }
 
 .about-vadilal-section:hover .about-paragraph {
-    display: block;
-    opacity: 1;
+  display: block;
+  opacity: 1;
 }
-
-
 
 /* pinterest part */
 
-
-
 .heroimg {
-    height: 300px;
-    width: 230px;
-    border-radius: 20px;
+  height: 300px;
+  width: 230px;
+  border-radius: 20px;
 }
 
 .parent::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.436);
-    z-index: 1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.436);
+  z-index: 1;
 }
 
 .parent {
-    height: 600px;
-    position: relative;
+  height: 600px;
+  position: relative;
 }
 
 .extra {
-    min-width: 420px;
+  min-width: 420px;
 }
 
 #one {
-    margin-left: -80px;
-    margin-top: -17px;
+  margin-left: -80px;
+  margin-top: -17px;
 }
 
 #two {
-    margin-top: -140px;
+  margin-top: -140px;
 }
 
 #three {
-    margin-top: -200px;
+  margin-top: -200px;
 }
 
 #four {
-    margin-top: -80px;
+  margin-top: -80px;
 }
 
 #five {
-    /* margin-right: -120px; */
-    margin-left: 50px;
-    margin-top: -17px;
+  /* margin-right: -120px; */
+  margin-left: 50px;
+  margin-top: -17px;
 }
 
 .heading {
-    position: absolute;
-    top: 900px;
-    left: 10%;
-    color: white;
-    z-index: 2;
-    text-align: left;
-    font-size: 70px;
-    font-weight: bold;
+  position: absolute;
+  top: 900px;
+  left: 10%;
+  color: white;
+  z-index: 2;
+  text-align: left;
+  font-size: 70px;
+  font-weight: bold;
 }
 
 .mid {
-    width: 450px;
-    /* height: 100%; */
-    position: absolute;
-    top: 10%;
-    right: 11%;
-    background-color: white;
-    z-index: 2;
+  width: 450px;
+  /* height: 100%; */
+  position: absolute;
+  top: 10%;
+  right: 11%;
+  background-color: white;
+  z-index: 2;
 }

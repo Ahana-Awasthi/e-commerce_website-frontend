@@ -14,7 +14,30 @@ export const AuthProvider = ({ children }) => {
       address: localStorage.getItem("userAddress") || null,
     },
   });
+  const refreshAccessToken = async () => {
+    const refreshToken = localStorage.getItem("refreshToken");
 
+    const res = await axios.post(
+      "https://e-commerce-website-backend-d84m.onrender.com/api/refresh",
+      { refreshToken },
+    );
+
+    localStorage.setItem("token", res.data.token);
+
+    return res.data.token;
+  };
+  const withAutoRefresh = async (apiCall) => {
+    try {
+      return await apiCall();
+    } catch (err) {
+      if (err.response?.status === 401) {
+        const newToken = await refreshAccessToken();
+
+        return await apiCall(newToken);
+      }
+      throw err;
+    }
+  };
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,9 +54,12 @@ export const AuthProvider = ({ children }) => {
     try {
       // Fetch cart data
       try {
-        const cartRes = await axios.get("https://e-commerce-website-backend-d84m.onrender.com/api/cart", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const cartRes = await axios.get(
+          "https://e-commerce-website-backend-d84m.onrender.com/api/cart",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
         const cartData = Array.isArray(cartRes.data.cart)
           ? cartRes.data.cart
           : [];
@@ -65,8 +91,6 @@ export const AuthProvider = ({ children }) => {
       setIsLoading(false);
     }
   }, []);
-
-
 
   // Sync auth state when token changes in localStorage
   useEffect(() => {
@@ -102,10 +126,13 @@ export const AuthProvider = ({ children }) => {
   // Login function
   const login = async (email, password) => {
     try {
-      const res = await axios.post("https://e-commerce-website-backend-d84m.onrender.com/api/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://e-commerce-website-backend-d84m.onrender.com/api/login",
+        {
+          email,
+          password,
+        },
+      );
 
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
@@ -248,10 +275,13 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const res = await axios.delete("https://e-commerce-website-backend-d84m.onrender.com/api/cart", {
-        data: { productId },
-        headers: { Authorization: `Bearer ${auth.token}` },
-      });
+      const res = await axios.delete(
+        "https://e-commerce-website-backend-d84m.onrender.com/api/cart",
+        {
+          data: { productId },
+          headers: { Authorization: `Bearer ${auth.token}` },
+        },
+      );
 
       if (res.ok || res.status === 200) {
         setCart((prev) => prev.filter((item) => item[0] !== productId));
@@ -302,9 +332,12 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      await axios.delete("https://e-commerce-website-backend-d84m.onrender.com/api/cart/clear", {
-        headers: { Authorization: `Bearer ${auth.token}` },
-      });
+      await axios.delete(
+        "https://e-commerce-website-backend-d84m.onrender.com/api/cart/clear",
+        {
+          headers: { Authorization: `Bearer ${auth.token}` },
+        },
+      );
       setCart([]);
       // Dispatch event to update navbar badges
       setTimeout(() => {

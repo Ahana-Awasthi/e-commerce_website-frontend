@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "./Nav";
 import Loading from "./Loading";
 import "./Cart.css";
-import axios from "axios";
+import api from "../api/axios";
 import popSound from "../assets/popping-sound.mp3";
 import { AuthContext } from "../context/AuthContext";
 
@@ -41,7 +41,7 @@ export default function Cart() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsRes = await axios.get(
+        const productsRes = await api.get(
           "https://e-commerce-website-backend-d84m.onrender.com/api/products",
         );
         setProducts(productsRes.data || []);

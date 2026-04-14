@@ -4,7 +4,7 @@ import "./OrderDetails.css";
 import Loading from "./Loading";
 import { motion } from "framer-motion";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axios";
 
 // Icons
 import { FaCheckCircle, FaBoxOpen, FaTruck, FaHome } from "react-icons/fa";
@@ -242,7 +242,7 @@ const OrderPage = () => {
           return;
         }
 
-        const response = await axios.get(
+        const response = await api.get(
           `https://e-commerce-website-backend-d84m.onrender.com/api/orders/${orderId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -256,7 +256,7 @@ const OrderPage = () => {
           response.data.order.products &&
           response.data.order.products.length > 0
         ) {
-          const productsRes = await axios.get(
+          const productsRes = await api.get(
             "https://e-commerce-website-backend-d84m.onrender.com/api/products",
           );
           const productMap = {};

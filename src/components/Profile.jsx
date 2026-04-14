@@ -3,7 +3,7 @@ import NavBar from "./Nav";
 import "./Profile.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import axios from "axios";
+import api from "../api/axios";
 
 const Toast = ({ message, isError }) => {
   if (!message) return null;
@@ -57,8 +57,7 @@ export default function Profile() {
     name: localStorage.getItem("userName"),
     mobile: localStorage.getItem("userPhone"),
     email: localStorage.getItem("userEmail"),
-    address:
-      localStorage.getItem("userAddress"),
+    address: localStorage.getItem("userAddress"),
     language: initializeLanguage(),
   });
   const [profile, setProfile] = useState({ ...originalProfile });
@@ -77,9 +76,12 @@ export default function Profile() {
           return;
         }
 
-        const response = await axios.get("https://e-commerce-website-backend-d84m.onrender.com/api/orders", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await api.get(
+          "https://e-commerce-website-backend-d84m.onrender.com/api/orders",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
 
         setOrders(response.data.orders || []);
       } catch (err) {
@@ -136,19 +138,22 @@ export default function Profile() {
         return;
       }
 
-      const response = await fetch("https://e-commerce-website-backend-d84m.onrender.com/api/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        "https://e-commerce-website-backend-d84m.onrender.com/api/profile",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: fullName,
+            email: profile.email,
+            phone: profile.mobile,
+            address: profile.address,
+          }),
         },
-        body: JSON.stringify({
-          name: fullName,
-          email: profile.email,
-          phone: profile.mobile,
-          address: profile.address,
-        }),
-      });
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -165,7 +170,6 @@ export default function Profile() {
       }
 
       localStorage.setItem("userLanguage", profile.language);
-
 
       const updatedProfile = {
         name: data.user.name,
@@ -259,8 +263,6 @@ export default function Profile() {
                       />
                     </div>
                   </div>
-
-                  
                 </div>
 
                 <div className="input-group">

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import NavBar from "./Nav";
 import "./Chatbot.css";
 import botAvatar from "../assets/bot.png";
-import axios from "axios";
+import api from "../api/axios";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -44,9 +44,12 @@ const Chatbot = () => {
 
       setIsLoadingOrders(true);
       try {
-        const response = await axios.get("https://e-commerce-website-backend-d84m.onrender.com/api/orders", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await api.get(
+          "https://e-commerce-website-backend-d84m.onrender.com/api/orders",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
         setOrders(response.data.orders || []);
       } catch (err) {
         console.error("Error fetching orders:", err);
@@ -228,10 +231,7 @@ const Chatbot = () => {
         break;
       case "first_time_greeting": {
         setFormOpened("1st-greeting");
-        addMessage(
-          "bot",
-          `Hi ${userName}! I am ShopBuddy. Nice to meet you!`,
-        );
+        addMessage("bot", `Hi ${userName}! I am ShopBuddy. Nice to meet you!`);
 
         setTimeout(() => {
           showGreeting(); // normal greeting with options

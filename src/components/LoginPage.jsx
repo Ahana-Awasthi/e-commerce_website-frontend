@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 import NavBar from "./Nav";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axios";
 import { AuthContext } from "../context/AuthContext";
 
 const Toast = ({ message, isError }) => {
@@ -45,7 +45,7 @@ const Auth = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [toastError, setToastError] = useState(false);
   const navigate = useNavigate();
-const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const togglePassword = () => setShowPassword((prev) => !prev);
   const toggleConfirmPassword = () => setShowConfirmPassword((prev) => !prev);
@@ -61,7 +61,8 @@ const [showPassword, setShowPassword] = useState(false);
 
       if (result.success) {
         // Store token and user info
-        localStorage.setItem("token", result.token);
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("refreshToken", data.refreshToken);
         localStorage.setItem("userName", result.user.name);
         localStorage.setItem("userEmail", result.user.email);
         localStorage.setItem("userId", result.user.id);
@@ -79,40 +80,40 @@ const [showPassword, setShowPassword] = useState(false);
       showToast("Google login failed", true);
     }
   };
-const EyeIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);
+  const EyeIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
 
-const EyeOffIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.77 21.77 0 0 1 5.06-5.94" />
-    <path d="M1 1l22 22" />
-    <path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.77 21.77 0 0 1-2.06 3.19" />
-  </svg>
-);
+  const EyeOffIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.77 21.77 0 0 1 5.06-5.94" />
+      <path d="M1 1l22 22" />
+      <path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.77 21.77 0 0 1-2.06 3.19" />
+    </svg>
+  );
   const handleGoogleSignup = async () => {
     try {
       const result = await signupWithGoogle();
@@ -147,13 +148,15 @@ const EyeOffIcon = () => (
         await login(email, password);
         showToast("Login successful! Redirecting...");
         setTimeout(() => navigate("/dashboard"), 500);
-        fetch("https://e-commerce-website-backend-d84m.onrender.com/api/send-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            to: email,
-            subject: "Login Successful on Shopora",
-            text: `Hi ${name},
+        fetch(
+          "https://e-commerce-website-backend-d84m.onrender.com/api/send-email",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              to: email,
+              subject: "Login Successful on Shopora",
+              text: `Hi ${name},
 
 You have successfully logged into Shopora. We're glad to see you back!
 
@@ -166,19 +169,22 @@ If this wasn’t you, please secure your account immediately.
 
 Thanks,
 The Shopora Team`,
-          }),
-        });
-      } else {  
+            }),
+          },
+        );
+      } else {
         // Sign up new user
         if (password !== confirmPassword) {
           showToast("Passwords do not match!", true);
-          fetch("https://e-commerce-website-backend-d84m.onrender.com/api/send-email", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              to: email,
-              subject: "Login Successful on Shopora",
-              text: `Hi ${name},
+          fetch(
+            "https://e-commerce-website-backend-d84m.onrender.com/api/send-email",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                to: email,
+                subject: "Login Successful on Shopora",
+                text: `Hi ${name},
 
             Welcome to Shopora! We're thrilled to have you on board. Here’s a quick overview of what you can do:
 
@@ -190,26 +196,33 @@ The Shopora Team`,
 
             Thanks,
             The Shopora Team`,
-            }),
-          });
+              }),
+            },
+          );
           return;
         }
 
-        const res = await axios.post("https://e-commerce-website-backend-d84m.onrender.com/api/register", {
-          name,
-          email,
-          password,
-          phone: phone || "Not provided", // optional
-          address: address || "Not provided", // optional
-        });
+        const res = await api.post(
+          "https://e-commerce-website-backend-d84m.onrender.com/api/register",
+          {
+            name,
+            email,
+            password,
+            phone: phone || "Not provided", // optional
+            address: address || "Not provided", // optional
+          },
+        );
 
         console.log("Registration response:", res.data); // debug
         showToast("Registration successful! Please login.");
-        fetch("https://e-commerce-website-backend-d84m.onrender.com/users/welcome-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email, name: name }),
-        });
+        fetch(
+          "https://e-commerce-website-backend-d84m.onrender.com/users/welcome-email",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email, name: name }),
+          },
+        );
         setIsLogin(true); // switch to login page
       }
     } catch (err) {
