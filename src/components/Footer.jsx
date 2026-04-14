@@ -86,11 +86,11 @@ export default function Footer() {
             <p className="text-secondary small">Mail Us</p>
 
             <a
-              href={`https://mail.google.com/mail/?view=cm&to=myapp@gmail.com&su=Request%20for%20Assistance&body=Dear%20Support%20Team,%0A%0AI%20am%20contacting%20you%20regarding%20an%20issue%20I%20encountered%20on%20the%20app.%0A%0ARegards,%0A${userName}`}
+              href={`https://mail.google.com/mail/?view=cm&to=shopora@gmail.com&su=Request%20for%20Assistance&body=Dear%20Support%20Team,%0A%0AI%20am%20contacting%20you%20regarding%20an%20issue%20I%20encountered%20on%20the%20app.%0A%0ARegards,%0A${userName}`}
               target="_blank"
               className="text-light text-decoration-none small d-block mb-3"
             >
-              myapp@gmail.com
+              shopora@gmail.com
             </a>
 
             <p className="text-secondary small">Social</p>
@@ -155,7 +155,7 @@ export default function Footer() {
             </div>
 
             <div className="col-md-4 text-md-end mt-2 mt-md-0">
-              <span>© 2007–2026 MyApp</span>
+              <span>© 2007–2026 Shopora</span>
             </div>
           </div>
         </div>

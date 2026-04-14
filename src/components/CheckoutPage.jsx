@@ -255,7 +255,7 @@ export default function CheckoutPage() {
         <header className="checkout-header">
           <div className="header-content">
             <div className="logo">
-              <h1>MyApp Checkout</h1>
+              <h1>Shopora Checkout</h1>
             </div>
             <div className="progress-indicator">
               <div className="progress-step completed">

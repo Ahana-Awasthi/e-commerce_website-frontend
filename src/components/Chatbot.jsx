@@ -230,7 +230,7 @@ const Chatbot = () => {
         setFormOpened("1st-greeting");
         addMessage(
           "bot",
-          `Hi ${userName}! I am ShopEase Assistant. Nice to meet you!`,
+          `Hi ${userName}! I am ShopBuddy. Nice to meet you!`,
         );
 
         setTimeout(() => {
@@ -583,7 +583,7 @@ const Chatbot = () => {
       <div className="chat-container" style={{ height: "500px" }}>
         <div className="chat-header">
           <img src={botAvatar} alt="Bot" className="bot-avatar" />
-          <h5>ShopEase Assistant</h5>
+          <h5>Shopora Assistant</h5>
         </div>
 
         <div

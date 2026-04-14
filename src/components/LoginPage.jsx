@@ -152,10 +152,10 @@ const EyeOffIcon = () => (
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             to: email,
-            subject: "Login Successful on MyApp",
+            subject: "Login Successful on Shopora",
             text: `Hi ${name},
 
-You have successfully logged into MyApp. We're glad to see you back!
+You have successfully logged into Shopora. We're glad to see you back!
 
 Here’s a quick overview of what you can do:
 - Browse our latest products
@@ -165,7 +165,7 @@ Here’s a quick overview of what you can do:
 If this wasn’t you, please secure your account immediately.
 
 Thanks,
-The MyApp Team`,
+The Shopora Team`,
           }),
         });
       } else {  
@@ -177,10 +177,10 @@ The MyApp Team`,
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               to: email,
-              subject: "Login Successful on MyApp",
+              subject: "Login Successful on Shopora",
               text: `Hi ${name},
 
-            Welcome to MyApp! We're thrilled to have you on board. Here’s a quick overview of what you can do:
+            Welcome to Shopora! We're thrilled to have you on board. Here’s a quick overview of what you can do:
 
             - Browse our latest products
             - Add favorites to your wishlist
@@ -189,7 +189,7 @@ The MyApp Team`,
             If you have any questions, our support team is always happy to help.
 
             Thanks,
-            The MyApp Team`,
+            The Shopora Team`,
             }),
           });
           return;

@@ -174,7 +174,7 @@ const Header = ({ onBack }) => (
       <nav className="nav">
         <a href="/" className="logo">
           <i className="fas fa-shopping-bag"></i>
-          <span>ShopEase</span>
+          <span>Shopora</span>
         </a>
         <button className="back-btn" onClick={onBack}>
           <i className="fas fa-arrow-left"></i>
@@ -246,7 +246,7 @@ const ActionButtons = ({ navigate }) => (
       Continue Shopping
     </button>
     <a
-      href="https://mail.google.com/mail/u/0/?to=myapp@gmail.com&su=Request+for+Clarification+regarding+Privacy+Policy&body=Dear+Support+Team,%0A%0AI+am+contacting+you+regarding+some+questions+about+my+privacy+and+rights.++I+want+clarify+the+following+points:+%0A+++-++%0A+++-++%0A+++-++%0A%0A%0ARegards,%0A&fs=1&tf=cm"
+      href="https://mail.google.com/mail/u/0/?to=shopora@gmail.com&su=Request+for+Clarification+regarding+Privacy+Policy&body=Dear+Support+Team,%0A%0AI+am+contacting+you+regarding+some+questions+about+my+privacy+and+rights.++I+want+clarify+the+following+points:+%0A+++-++%0A+++-++%0A+++-++%0A%0A%0ARegards,%0A&fs=1&tf=cm"
       target="_blank"
       className="btn btn-secondary"
     >
@@ -259,7 +259,7 @@ const ActionButtons = ({ navigate }) => (
 const getSectionContent = (sectionId) => {
   const content = {
     intro: `
-      <p>At ShopEase, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our e-commerce platform.</p>
+      <p>At Shopora, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our e-commerce platform.</p>
       <p>We process personal information in accordance with applicable data protection laws including GDPR, CCPA, and other relevant regulations.</p>
     `,
     info: `
@@ -322,7 +322,7 @@ const getSectionContent = (sectionId) => {
     `,
     contact: `
       <p>Questions about this Privacy Policy? Contact us:</p>
-      <p><strong>Email:</strong> myapp@gmail.com</p>
+      <p><strong>Email:</strong> shopora@gmail.com</p>
       <p><strong>Phone:</strong> +1 (555) 123-4567</p>
       <p><strong>Address:</strong> 123 Commerce Street, Business City, BC 12345</p>
       <p><strong>Response Time:</strong> Within 48 hours</p>
