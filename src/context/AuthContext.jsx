@@ -66,52 +66,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  // Initialize on component mount
-  useEffect(() => {
-    // Check if this is the first time the app is mounting (true app restart)
-    const hasSessionStarted = sessionStorage.getItem("_app_session_started");
 
-    if (!hasSessionStarted) {
-      // First time mounting after app restart - clear localStorage
-      localStorage.clear();
-      sessionStorage.setItem("_app_session_started", "true");
-      setAuth({
-        token: null,
-        user: {
-          id: null,
-          name: null,
-          email: null,
-          phone: null,
-          address: null,
-        },
-      });
-      setCart([]);
-      setWishlist([]);
-      setIsLoading(false);
-    } else {
-      // Page reload within same session - check if token exists
-      const token = localStorage.getItem("token");
-      if (token) {
-        // User already logged in, initialize their data immediately
-        setAuth({
-          token,
-          user: {
-            id: localStorage.getItem("userId") || null,
-            name: localStorage.getItem("userName") || null,
-            email: localStorage.getItem("userEmail") || null,
-            phone: localStorage.getItem("userPhone") || null,
-            address: localStorage.getItem("userAddress") || null,
-          },
-        });
-        // Keep loading true while fetching cart/wishlist
-        setIsLoading(true);
-        initializeUserData();
-      } else {
-        // No token, keep logged out
-        setIsLoading(false);
-      }
-    }
-  }, [initializeUserData]);
 
   // Sync auth state when token changes in localStorage
   useEffect(() => {

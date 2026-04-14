@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding-top: 110px;
   overflow-x: hidden;
+  width: 100vw;
 }
 
 /* NavBar */
@@ -17,12 +18,14 @@ body {
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  width: 100% !important;
+  width: 100vw !important;
   flex-wrap: wrap;
   z-index: 1000;
   box-sizing: border-box;
 }
-
+.categories-nav{
+  width: 100vw !important;
+}
 .logo {
   font-size: 22px;
   font-weight: bold;
