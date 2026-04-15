@@ -61,8 +61,7 @@ const Auth = () => {
 
       if (result.success) {
         // Store token and user info
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.setItem("token", result.token);
         localStorage.setItem("userName", result.user.name);
         localStorage.setItem("userEmail", result.user.email);
         localStorage.setItem("userId", result.user.id);
