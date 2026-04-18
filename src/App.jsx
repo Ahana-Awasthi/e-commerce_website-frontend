@@ -31,7 +31,8 @@ import Redirect from "./components/Redirect.jsx";
 import HomePage from "./components/HomePage";
 import Shop from "./components/Shop.jsx";
 import OrderDetails from "./components/OrderDetails.jsx";
-
+//Auto-Fetcher to stop Backend form Sleeping
+import { useProductsAutoFetch } from "./hooks/useFetchInterval";
 // Home component (kept separate)
 function Home() {
   const [auth, setAuth] = useState({
@@ -53,26 +54,26 @@ function AppContent() {
   const { isLoading } = useContext(AuthContext);
   const token = localStorage.getItem("token");
   const [showFilters, setShowFilters] = useState(false);
-const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const toggleFilters = () => {
     setShowFilters((prev) => !prev);
   };
- useEffect(() => {
-   const handleResize = () => {
-     const mobile = window.innerWidth <= 768;
-     setIsMobile(mobile);
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
 
-     // auto behavior:
-     if (!mobile)
-       setShowFilters(true); // desktop ALWAYS show
-     else setShowFilters(false); // mobile default hidden
-   };
+      // auto behavior:
+      if (!mobile)
+        setShowFilters(true); // desktop ALWAYS show
+      else setShowFilters(false); // mobile default hidden
+    };
 
-   handleResize(); // run once on load
-   window.addEventListener("resize", handleResize);
+    handleResize(); // run once on load
+    window.addEventListener("resize", handleResize);
 
-   return () => window.removeEventListener("resize", handleResize);
- }, []);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const shouldShowFilters = !isMobile || showFilters;
   return (
@@ -80,7 +81,10 @@ const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
       <ScrollToTop />
       <NavBar />
       <div style={{ backgroundColor: "#f8f9fa" }}>
-        <CategoriesNav toggleFilters={toggleFilters} showFilters={showFilters}/>
+        <CategoriesNav
+          toggleFilters={toggleFilters}
+          showFilters={showFilters}
+        />
       </div>
 
       <Routes>
@@ -147,11 +151,13 @@ const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 }
 
 function App() {
+    useProductsAutoFetch();
   useEffect(() => {
     let storedPages = localStorage.getItem("availablePages");
+  
 
     // Treat "null" or undefined or missing as empty
-    if (!storedPages || storedPages === "null") {
+    if (!storedPages || storedPages === "null" || storedPages === "undefined") {
       const defaultPages = [
         "Men",
         "Women",
