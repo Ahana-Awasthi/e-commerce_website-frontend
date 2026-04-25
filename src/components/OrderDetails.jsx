@@ -14,6 +14,7 @@ import { FiDownload } from "react-icons/fi";
 const OrderPage = () => {
   const { orderId } = useParams();
   const navigate = useNavigate();
+  const [showInvoicePreview, setShowInvoicePreview] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,7 +22,122 @@ const OrderPage = () => {
   const [products, setProducts] = useState({});
   const [lineWidth, setLineWidth] = useState(0);
   const [downloadingPDF, setDownloadingPDF] = useState(false);
+  const userName = localStorage.getItem("userName") || "Customer";
+  // Temporary Preview
+  const InvoicePreview = ({
+    order,
+    products,
+    userName,
+    orderStatus,
+    formatPaymentMethod,
+  }) => {
+    const items = Array.isArray(order.products) ? order.products : [];
+    const total = order.total;
+    const tax = Math.round(total * 0.05);
+    const shipping = total > 1000 ? 0 : 50;
+    const discount = total > 500 ? total * 0.1 : 0;
+    if (!order) return null;
+    return (
+      <div style={{ fontFamily: "Arial, sans-serif", color: "#333" }}>
+        {/* Header */}
+        <div
+          style={{
+            borderBottom: "3px solid #6a5acd",
+            paddingBottom: 20,
+            marginBottom: 20,
+          }}
+        >
+          <h1 style={{ margin: 0, color: "#6a5acd", fontSize: 28 }}>INVOICE</h1>
+          <p>Order #{order.orderId}</p>
+        </div>
 
+        {/* Order Info */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 30,
+            marginBottom: 30,
+          }}
+        >
+          <div>
+            <h3 style={{ color: "#6a5acd" }}>Bill From</h3>
+            <p>
+              <b>Shopora Trades Private Limited</b>
+            </p>
+          </div>
+
+          <div>
+            <h3 style={{ color: "#6a5acd" }}>Bill To</h3>
+            <p>
+              <b>{userName}</b>
+            </p>
+            <p>{order.deliveryAddress}</p>
+          </div>
+        </div>
+
+        {/* Order Details */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: 30,
+          }}
+        >
+          <div>
+            <p>
+              Order Date:{" "}
+              {new Date(order.orderDate).toLocaleDateString("en-IN")}
+            </p>
+            <p>Status: {orderStatus}</p>
+          </div>
+
+          <div>
+            <p>Payment: {formatPaymentMethod(order.paymentMethod)}</p>
+            <p>ID: {order.orderId}</p>
+          </div>
+        </div>
+
+        {/* Items */}
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {(order.products || []).map((item, idx) => {
+              const product = products[item.productId];
+              const itemTotal = (product?.price || 0) * item.quantity;
+
+              return (
+                <tr key={idx}>
+                  <td>{product?.name}</td>
+                  <td>{item.quantity}</td>
+                  <td>₹{product?.price}</td>
+                  <td>₹{itemTotal}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+
+        {/* Summary */}
+        <div style={{ marginTop: 20, textAlign: "right" }}>
+          <p>Subtotal: ₹{Math.floor(total)}</p>
+          <p>Tax: ₹{tax}</p>
+          <p>Shipping: ₹{shipping}</p>
+          <p>Discount: {discount === 0 ? "None" : "10%"}</p>
+
+          <h3>Total: ₹{Math.round(total + tax + shipping - discount)}</h3>
+        </div>
+      </div>
+    );
+  };
   // Helper function to format payment method
   const formatPaymentMethod = (method) => {
     const paymentMethods = {
@@ -62,12 +178,12 @@ const OrderPage = () => {
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
             <div>
               <h3 style="color: #6a5acd; margin-bottom: 10px; font-size: 14px; text-transform: uppercase;">Bill From</h3>
-              <p style="margin: 5px 0; font-weight: bold;">CODENESTIA E-Commerce</p>
+              <p style="margin: 5px 0; font-weight: bold;">Shopora Trades Private Limited</p>
               <p style="margin: 5px 0; color: #666; font-size: 12px;">Your Trusted Online Store</p>
             </div>
             <div>
               <h3 style="color: #6a5acd; margin-bottom: 10px; font-size: 14px; text-transform: uppercase;">Bill To</h3>
-              <p style="margin: 5px 0; font-weight: bold;">Customer</p>
+              <p style="margin: 5px 0; font-weight: bold;">${userName}</p>
               <p style="margin: 5px 0; color: #666; font-size: 12px;">${order.deliveryAddress}</p>
             </div>
           </div>
@@ -120,17 +236,23 @@ const OrderPage = () => {
                 <span>₹${Math.floor(order.total)}</span>
               </div>
               <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ddd;">
-                <span>Tax (3%):</span>
-                <span>₹${Math.ceil((order.total % 1) * 100) || 3}</span>
+                <span>Tax (5%):</span>
+                <span>₹${tax || "0(Tax-free delivery on bigger orders)"}</span>
               </div>
               <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ddd;">
                 <span>Shipping:</span>
-                <span>Free</span>
+                <span>${shipping === 0 ? "Free" : "₹ " + shipping}</span>
               </div>
+             <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ddd;">
+  <span>Discount:</span>
+  <span>${discount === 0 ? "None" : "10%"}</span>
+</div>
               <div style="display: flex; justify-content: space-between; padding: 15px 0; font-size: 16px; font-weight: bold; color: #27ae60; border-top: 2px solid #6a5acd;">
                 <span>TOTAL:</span>
-                <span>₹${Math.ceil(order.total)}</span>
+                <span>₹${Math.round(order.total + tax + shipping - discount)}</span>
               </div>
+            </div>
+
             </div>
           </div>
 
@@ -230,7 +352,13 @@ const OrderPage = () => {
       return () => clearInterval(interval);
     }
   }, [order]);
+  const total = order?.total || 0;
 
+  const tax = Math.round(total * 0.05);
+  const shipping = total > 1000 ? 0 : 50;
+  const discount = total > 500 ? total * 0.1 : 0;
+
+  const status = order?.status || "Placed";
   // Fetch order data
   useEffect(() => {
     const fetchOrder = async () => {
@@ -242,12 +370,7 @@ const OrderPage = () => {
           return;
         }
 
-        const response = await api.get(
-          `https://e-commerce-website-backend-d84m.onrender.com/api/orders/${orderId}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        );
+        const response = await api.get(`/orders/${orderId}`);
 
         setOrder(response.data.order);
 
@@ -256,9 +379,7 @@ const OrderPage = () => {
           response.data.order.products &&
           response.data.order.products.length > 0
         ) {
-          const productsRes = await api.get(
-            "https://e-commerce-website-backend-d84m.onrender.com/api/products",
-          );
+          const productsRes = await api.get("/products");
           const productMap = {};
           productsRes.data.forEach((p) => {
             productMap[p._id] = p;
@@ -422,6 +543,7 @@ const OrderPage = () => {
                 );
               })}
             </div>
+         
           </>
         )}
 
@@ -509,19 +631,30 @@ const OrderPage = () => {
                 </span>
               </div>
               <div className="summary-row">
-                <span className="summary-label">Tax (3%)</span>
+                <span className="summary-label">Tax (5%)</span>
                 <span className="summary-value">
-                  ₹{Math.ceil((order.total % 1) * 100) || 3}
+                  ₹{tax || "0(Tax-free delivery on bigger orders)"}
                 </span>
               </div>
               <div className="summary-row">
                 <span className="summary-label">Shipping</span>
-                <span className="summary-value">Free</span>
+                <span className="summary-value">
+                  {shipping === 0 ? "Free" : shipping}
+                </span>
               </div>
+              <div className="summary-row">
+                <span className="summary-label">Discount</span>
+                <span className="summary-value">
+                  {discount === 0 ? "None" : "10%"}
+                </span>
+              </div>
+
               <div className="summary-divider"></div>
               <div className="summary-row total-row">
                 <span className="summary-label">Total Amount</span>
-                <span className="summary-value">₹{Math.ceil(order.total)}</span>
+                <span className="summary-value">
+                  ₹{Math.round(order.total + tax + shipping - discount)}
+                </span>
               </div>
               <div className="summary-row">
                 <span className="summary-label">Payment Method</span>

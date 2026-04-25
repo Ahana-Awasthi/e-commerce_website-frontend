@@ -10,7 +10,7 @@
   padding: 16px 20px;
   border-radius: 10px;
   font-weight: 600;
-  font-size:20px;
+  font-size: 20px;
   margin-bottom: 20px;
 }
 .item-image {
@@ -254,7 +254,7 @@
 }
 .mini-stack {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 12px;
 }
 .mini-card {

@@ -20,7 +20,7 @@ import ProductDetails from "./components/ProductDetailsPage";
 import Checkout from "./components/CheckoutPage";
 import PrivacyPolicy from "./components/PrivacyPolicy.jsx";
 import { AuthProvider, AuthContext } from "./context/AuthContext";
-
+import "./index.css";
 // Import pages normally instead of lazy
 import MenPage from "./components/MenPage.jsx";
 import WomenPage from "./components/WomenPage.jsx";
@@ -151,10 +151,9 @@ function AppContent() {
 }
 
 function App() {
-    useProductsAutoFetch();
+  useProductsAutoFetch();
   useEffect(() => {
     let storedPages = localStorage.getItem("availablePages");
-  
 
     // Treat "null" or undefined or missing as empty
     if (!storedPages || storedPages === "null" || storedPages === "undefined") {

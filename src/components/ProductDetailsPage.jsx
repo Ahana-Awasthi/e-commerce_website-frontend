@@ -189,101 +189,130 @@ export default function ProductDetails() {
     <>
       <NavBar searchInput={searchInput} setSearchInput={setSearchInput} />
 
-      <div style={{ maxWidth: 1200, padding: 30 }}>
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "20px",
+        }}
+      >
         <div
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40 }}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "40px",
+            alignItems: "start",
+          }}
         >
-          {/* PRODUCT IMAGE */}
-          <ImageWithFallback
-            src={product.imageUrl}
-            alt="Product Image"
-            style={{
-              width: "400px",
-              height: "600px",
-              marginLeft: 100,
-              borderRadius: 10,
-              border: "2px solid #000",
-              marginTop: -30,
-            }}
-          />
+          {/* IMAGE SECTION */}
+          <div style={{ width: "100%" }}>
+            <ImageWithFallback
+              src={product.imageUrl}
+              alt="Product Image"
+              style={{
+                width: "100%",
+                maxWidth: "450px",
+                height: "auto",
+                borderRadius: 12,
+                border: "2px solid #000",
+                display: "block",
+                margin: "0 auto",
+              }}
+            />
+          </div>
 
           {/* PRODUCT INFO */}
-          <div>
+          <div style={{ width: "100%" }}>
             <Badge>New Arrival</Badge>
-            <h1 style={{ fontSize: 32, marginTop: 20, marginBottom: 20 }}>
+
+            <h1
+              style={{ fontSize: "clamp(22px, 3vw, 32px)", margin: "16px 0" }}
+            >
               {product.name}
             </h1>
 
             {/* RATING */}
-            <div style={{ display: "flex", gap: 4 }}>
+            <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
               {[...Array(5)].map((_, i) => (
                 <Star key={i} fill={i < rating ? "#facc15" : "none"} />
               ))}
             </div>
 
             {/* PRICE */}
-            <div style={{ margin: "20px 0" }}>
-              <span style={{ fontSize: 28 }}>₹{product.price}</span>
+            <div
+              style={{
+                margin: "20px 0",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 10,
+              }}
+            >
+              <span style={{ fontSize: 26 }}>₹{product.price}</span>
+
               {product.originalPrice && (
                 <span
                   style={{
                     textDecoration: "line-through",
                     color: "#888",
-                    marginRight: 30,
-                    marginLeft: 10,
                   }}
                 >
                   ₹{product.originalPrice}
                 </span>
               )}
-              {product.discount && (
-                <Badge className="discount-badge">
-                  {product.discount}% OFF
-                </Badge>
-              )}
+
+              {product.discount && <Badge>{product.discount}% OFF</Badge>}
             </div>
 
             {/* COLORS */}
-            {/* COLORS */}
-            {/* COLORS - only render if product.color exists */}
-            {product.color && (
+            {product.color && colors.length > 0 && (
               <>
-                {colors.length > 0 && (
-                  <>
-                    <p>Color: {selectedColor?.name}</p>
-                    <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
-                      {colors.map((c) => (
-                        <button
-                          key={c.name}
-                          onClick={() => setSelectedColor(c)}
-                          style={{
-                            width: 35,
-                            height: 35,
-                            borderRadius: "50%",
-                            backgroundColor: c.value || "#fff",
-                            border:
-                              selectedColor?.name === c.name
-                                ? "3px solid #b815e9"
-                                : "1px solid #ccc",
-                            cursor: "pointer",
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
+                <p>Color: {selectedColor?.name}</p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 10,
+                    marginBottom: 20,
+                  }}
+                >
+                  {colors.map((c) => (
+                    <button
+                      key={c.name}
+                      onClick={() => setSelectedColor(c)}
+                      style={{
+                        width: 34,
+                        height: 34,
+                        borderRadius: "50%",
+                        backgroundColor: c.value || "#fff",
+                        border:
+                          selectedColor?.name === c.name
+                            ? "3px solid #000"
+                            : "1px solid #ccc",
+                        cursor: "pointer",
+                      }}
+                    />
+                  ))}
+                </div>
               </>
             )}
 
             {/* SIZE */}
             <p>Select Size</p>
-            <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 10,
+                marginBottom: 20,
+              }}
+            >
               {sizes.map((s) => (
                 <button
                   key={s}
                   onClick={() => setSelectedSize(s)}
                   style={{
-                    padding: 10,
+                    padding: "10px 14px",
                     borderRadius: 6,
                     border: "1px solid #ccc",
                     background: selectedSize === s ? "#000" : "#fff",
@@ -295,22 +324,32 @@ export default function ProductDetails() {
               ))}
             </div>
 
-
             {/* ACTION BUTTONS */}
-            <div style={{ display: "flex", gap: 10 }}>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 10,
+              }}
+            >
               <Button
-                style={{ flex: 1 }}
+                style={{ flex: "1 1 200px" }}
                 disabled={!selectedSize}
                 onClick={() =>
                   addToCart(product._id || product.id, setCart, navigate)
                 }
               >
-                <ShoppingCart size={18} />{" "}
-                <div style={{ marginLeft: 10 }}>Add to Cart</div>
+                <ShoppingCart size={18} />
+                <span>Add to Cart</span>
               </Button>
+
               <Button
                 variant="outline"
-                style={{ border: wishlist.includes(product._id || product.id)? "3px solid" : "2px solid grey"}}
+                style={{
+                  border: wishlist.includes(product._id || product.id)
+                    ? "3px solid #000"
+                    : "2px solid grey",
+                }}
                 onClick={() =>
                   toggleWishlist(
                     product._id || product.id,
@@ -331,7 +370,7 @@ export default function ProductDetails() {
             </div>
 
             {/* ACCORDION */}
-            <div style={{ marginTop: 40 }}>
+            <div style={{ marginTop: 30 }}>
               <Accordion>
                 <AccordionItem value="desc">
                   <AccordionTrigger>
@@ -345,7 +384,7 @@ export default function ProductDetails() {
             </div>
 
             {/* FEATURES */}
-            <div style={{ marginTop: 40 }}>
+            <div style={{ marginTop: 30, display: "grid", gap: 10 }}>
               <div style={{ display: "flex", gap: 10 }}>
                 <Truck size={18} /> Free Shipping
               </div>

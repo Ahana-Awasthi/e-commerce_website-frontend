@@ -184,7 +184,7 @@
 
 .placeholder-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 12px;
 }
 
@@ -217,7 +217,31 @@
 .address-button-group .change-address-btn {
   flex: 1;
 }
+.coupon-box {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
 
+.coupon-box input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.coupon-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.coupon-box button {
+  padding: 8px 12px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
 .change-address-btn.save-btn {
   background: #667eea;
   color: white;

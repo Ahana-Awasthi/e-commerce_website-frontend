@@ -8,6 +8,7 @@ import {
   CodConfirmationPopup,
   PaymentProcessingPopup,
 } from "./OrderConfirmationPopup";
+import Loading from "./Loading";
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
@@ -22,7 +23,19 @@ export default function CheckoutPage() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [orderId, setOrderId] = useState("");
   const [orderTotalAmount, setOrderTotalAmount] = useState(0);
+  const [couponCode, setCouponCode] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [couponError, setCouponError] = useState("");
+  // YOU control coupons here
+  const COUPONS = {
+    SAVE30: 30, 
+    POCKETMONEY: 10,
+    NEWUSER50: 50,
+    BDDAY29: 60,
+    DEVELOPER90: 90,
+    AVAHANOG: 99,
 
+  };
   // Delivery address state
   const [deliveryAddress, setDeliveryAddress] = useState({
     fullName: localStorage.getItem("userName") || "",
@@ -31,7 +44,20 @@ export default function CheckoutPage() {
     city: localStorage.getItem("userAddress")?.split(",")[0] || "",
     state: localStorage.getItem("userAddress")?.split(",")[1]?.trim() || "",
   });
+  const applyCoupon = () => {
+    const code = couponCode.trim().toUpperCase();
 
+    if (COUPONS[code]) {
+      setAppliedCoupon({
+        code,
+        discountPercent: COUPONS[code],
+      });
+      setCouponError("");
+    } else {
+      setAppliedCoupon(null);
+      setCouponError("Invalid coupon code. Try again.");
+    }
+  };
   const [editedAddress, setEditedAddress] = useState({ ...deliveryAddress });
 
   // Initialize quantity map from context cart
@@ -84,8 +110,13 @@ export default function CheckoutPage() {
   const discount = totalOriginalPrice - totalPrice;
   const deliveryCharges = totalPrice > 1000 ? 0 : 40;
   const platformFee = 3;
-  const totalAmount = totalPrice + deliveryCharges + platformFee;
+  const subtotal = totalPrice + deliveryCharges + platformFee;
 
+  const discountAmount = appliedCoupon
+    ? (subtotal * appliedCoupon.discountPercent) / 100
+    : 0;
+
+  const totalAmount = subtotal - discountAmount;
   // Estimated delivery date (7 days from now)
   const deliveryDate = new Date();
   deliveryDate.setDate(deliveryDate.getDate() + 7);
@@ -186,14 +217,7 @@ export default function CheckoutPage() {
   };
 
   if (loading) {
-    return (
-      <>
-        <NavBar searchInput={searchInput} setSearchInput={setSearchInput} />
-        <div style={{ padding: "40px", textAlign: "center" }}>
-          Loading checkout...
-        </div>
-      </>
-    );
+    return <Loading />;
   }
 
   // Show confirmation popup if order was just placed
@@ -588,6 +612,27 @@ export default function CheckoutPage() {
                     <span>Platform Fee</span>
                     <span>₹{platformFee}</span>
                   </div>
+                  <div className="coupon-box">
+                    <input
+                      type="text"
+                      placeholder="Have a coupon?"
+                      value={couponCode}
+                      onChange={(e) => setCouponCode(e.target.value)}
+                    />
+                    <button onClick={applyCoupon}>Apply</button>
+                  </div>
+
+                  {couponError && (
+                    <div className="coupon-error">{couponError}</div>
+                  )}
+
+                  {appliedCoupon && (
+                    <div className="price-row discount-row">
+                      <span>Coupon ({appliedCoupon.code})</span>
+                      <span>-{appliedCoupon.discountPercent}%</span>
+                    </div>
+                  )}
+
                   <div className="price-divider"></div>
                   <div className="price-row total-row">
                     <span>Total Amount</span>

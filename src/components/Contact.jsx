@@ -22,6 +22,7 @@ const ContactUs = () => {
   const navigate = useNavigate(); // <--- move inside component
   const [expanded, setExpanded] = useState(null);
   const [searchInput, setSearchInput] = useState("");
+  const userName = localStorage.getItem("userName") || "";
 
   // FAQ data
   const faqs = [
@@ -70,7 +71,7 @@ const ContactUs = () => {
   return (
     <>
       <NavBar searchInput={searchInput} setSearchInput={setSearchInput} />
-    
+
       <div className="contact-page">
         <Container fluid>
           <Row>
@@ -144,14 +145,31 @@ const ContactUs = () => {
         {/* Footer */}
         <footer className="contact-footer">
           <div className="social-icons">
-            <i className="fa-brands fa-instagram"></i>
-            <i className="fa-brands fa-facebook"></i>
-            <i className="fa-brands fa-twitter"></i>
-            <i className="fa-brands fa-linkedin"></i>
-            <i className="fa-brands fa-youtube"></i>
+            <a href="https://www.instagram.com/" target ="_blank">
+              <i className="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/" target ="_blank">
+              <i className="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.twitter.com/" target ="_blank">
+              <i className="fa-brands fa-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com/" target ="_blank">
+              <i className="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="https://www.youtube.com/" target ="_blank">
+              <i className="fa-brands fa-youtube"></i>
+            </a>
           </div>
           <span className="footer-text">
-            support@yourecommerce.com | Mon–Sat, 9AM–9PM
+            <a
+              href={`https://mail.google.com/mail/?view=cm&to=shopora@gmail.com&su=Request%20for%20Assistance&body=Dear%20Support%20Team,%0A%0AI%20am%20contacting%20you%20regarding%20an%20issue%20I%20encountered%20on%20the%20app.%0A%0ARegards,%0A${userName}`}
+              style={{ textDecoration: "none", color: "black" }}
+              target="_blank"
+            >
+              shopora@gmail.com
+            </a>{" "}
+            | Mon–Sat, 9AM–9PM
           </span>
         </footer>
       </div>

@@ -3,7 +3,6 @@ body {
   margin: 0;
   padding-top: 110px;
   overflow-x: hidden;
-  width: 100vw;
 }
 
 /* NavBar */
@@ -23,7 +22,7 @@ body {
   z-index: 1000;
   box-sizing: border-box;
 }
-.categories-nav{
+.categories-nav {
   width: 100vw !important;
 }
 .logo {

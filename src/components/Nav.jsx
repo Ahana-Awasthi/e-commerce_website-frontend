@@ -129,7 +129,7 @@ export default function NavBar({ searchInput, setSearchInput }) {
   return (
     <nav className="navbar d-flex align-items-center justify-content-between px-3 py-3">
       <h2 className="logo mb-0">
-        <Link to={token ? "/dashboard" : "/"} style={{ color: "white" }}>
+        <Link to={token ? "/dashboard" : "/"} style={{ color: "white", fontSize: 25, marginLeft: -140, fontFamily: "cursive" }}>
           Shopora
         </Link>
       </h2>

@@ -86,7 +86,8 @@ export default function Footer() {
             <p className="text-secondary small">Mail Us</p>
 
             <a
-              href={`https://mail.google.com/mail/?view=cm&to=shopora@gmail.com&su=Request%20for%20Assistance&body=Dear%20Support%20Team,%0A%0AI%20am%20contacting%20you%20regarding%20an%20issue%20I%20encountered%20on%20the%20app.%0A%0ARegards,%0A${userName}`}
+              href=
+              {`https://mail.google.com/mail/?view=cm&to=shopora@gmail.com&su=Request%20for%20Assistance&body=Dear%20Support%20Team,%0A%0AI%20am%20contacting%20you%20regarding%20an%20issue%20I%20encountered%20on%20the%20app.%0A%0ARegards,%0A${userName}`}
               target="_blank"
               className="text-light text-decoration-none small d-block mb-3"
             >

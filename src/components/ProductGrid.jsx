@@ -63,7 +63,6 @@ function ProductGrid() {
       color: " Black ",
       size: "S , M , L",
     },
-
   ]);
   const navigate = useNavigate();
   const tags = [
@@ -89,7 +88,14 @@ function ProductGrid() {
           products.slice(0, 6).map((product, index) => {
             const randomTag = tags[Math.floor(Math.random() * tags.length)];
             return (
-              <div key={product._id || index} className="product-card">
+              <div
+                key={product._id || index}
+                className="product-card"
+                onClick={() =>
+                  navigate("/ProductDetails", { state: { product, index } })
+                }
+                style={{ cursor: "pointer" }}
+              >
                 <img
                   src={product.imageUrl}
                   alt={product.name}
@@ -110,9 +116,7 @@ function ProductGrid() {
                       ({product.discount}% OFF)
                     </span>
                   </h6>
-                  <span className="badge text-bg-success my-2 p-2">
-                    {randomTag}
-                  </span>
+
                   <br />
                   <span className="text-body-tertiary">
                     {product.color || "Product Color"}{" "}

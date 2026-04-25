@@ -145,7 +145,6 @@ function CategoriesNav({ toggleFilters, showFilters }) {
         className="categories-nav bg-dark-subtle"
         style={{
           marginTop: "10px",
-          cursor: "pointer",
         }}
       >
         <div className="categories-top ">
@@ -176,20 +175,43 @@ function CategoriesNav({ toggleFilters, showFilters }) {
           )}
           {/* Mobile Icons */}
           <div className="cart-icons">
-            <div style={{ position: "relative", display: "inline-block" }}>
-              <i
-                className="fa-solid fa-heart fs-4 mx-4 text-dark"
-                onClick={() => {
-                  if (!token) {
-                    navigate("/login");
-                  } else {
-                    navigate("/wishlist");
-                  }
-                }}
-              ></i>
+            <button
+              onClick={(e) => {
+                console.log("❤️ Wishlist button clicked!");
+                e.preventDefault();
+                e.stopPropagation();
+                const currentToken = localStorage.getItem("token");
+                console.log("Token check:", {
+                  currentToken,
+                  hasToken: !!currentToken,
+                });
+                if (!currentToken) {
+                  console.log("No token, navigating to login");
+                  navigate("/login");
+                } else {
+                  console.log("Token exists, navigating to wishlist");
+                  navigate("/wishlist");
+                }
+              }}
+              style={{
+                position: "relative",
+                display: "inline-block",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "0",
+                zIndex: 9999,
+                outline: "none",
+              }}
+              title="Wishlist"
+            >
+              <i className="fa-solid fa-heart fs-4 mx-4 text-dark"></i>
               {wishlistCount > 0 && (
                 <span
                   style={{
+                    position: "absolute",
+                    top: "-8px",
+                    right: "-5px",
                     backgroundColor: "#e74c3c",
                     color: "white",
                     borderRadius: "50%",
@@ -200,31 +222,51 @@ function CategoriesNav({ toggleFilters, showFilters }) {
                     justifyContent: "center",
                     fontSize: "11px",
                     fontWeight: "bold",
+                    pointerEvents: "none",
                   }}
                   className="badge"
                 >
                   {wishlistCount}
                 </span>
               )}
-            </div>
-            <div style={{ position: "relative", display: "inline-block" }}>
-              <i
-                className="fa-solid fa-cart-shopping fs-4 text-dark"
-                onClick={() => {
-                  if (!token) {
-                    navigate("/login");
-                  } else {
-                    navigate("/cart");
-                  }
-                }}
-                style={{ marginTop: -200 }}
-              ></i>
+            </button>
+            <button
+              onClick={(e) => {
+                console.log("🛒 Cart button clicked!");
+                e.preventDefault();
+                e.stopPropagation();
+                const currentToken = localStorage.getItem("token");
+                console.log("Token check:", {
+                  currentToken,
+                  hasToken: !!currentToken,
+                });
+                if (!currentToken) {
+                  console.log("No token, navigating to login");
+                  navigate("/login");
+                } else {
+                  console.log("Token exists, navigating to cart");
+                  navigate("/cart");
+                }
+              }}
+              style={{
+                position: "relative",
+                display: "inline-block",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "0",
+                zIndex: 9999,
+                outline: "none",
+              }}
+              title="Cart"
+            >
+              <i className="fa-solid fa-cart-shopping fs-4 mx-4 text-dark"></i>
               {cartCount > 0 && (
                 <span
                   style={{
                     position: "absolute",
                     top: "-8px",
-                    right: "0px",
+                    right: "-5px",
                     backgroundColor: "#e74c3c",
                     color: "white",
                     borderRadius: "50%",
@@ -235,12 +277,13 @@ function CategoriesNav({ toggleFilters, showFilters }) {
                     justifyContent: "center",
                     fontSize: "11px",
                     fontWeight: "bold",
+                    pointerEvents: "none",
                   }}
                 >
                   {cartCount}
                 </span>
               )}
-            </div>
+            </button>
           </div>
         </div>
 
@@ -327,16 +370,10 @@ function CategoriesNav({ toggleFilters, showFilters }) {
                 height: 20,
               }}
             >
-              <div style={{ marginLeft: 70 }}>
+              <div style={{ marginLeft: 70, zIndex: 10 }}>
                 <i
                   className="fa-solid fa-heart fs-4 mx-4 text-dark pt-3"
-                  onClick={() => {
-                    if (!token) {
-                      navigate("/login");
-                    } else {
-                      navigate("/wishlist");
-                    }
-                  }}
+                  onClick={() => navigate(token ? "/wishlist" : "/login")}
                 ></i>
               </div>
               {wishlistCount > 0 && (
@@ -353,6 +390,7 @@ function CategoriesNav({ toggleFilters, showFilters }) {
                     justifyContent: "center",
                     fontSize: "11px",
                     fontWeight: "bold",
+                    zIndex: 20,
                   }}
                   className="badge"
                 >

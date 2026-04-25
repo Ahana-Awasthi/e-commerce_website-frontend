@@ -60,7 +60,20 @@
   background-color: rgba(0, 0, 0, 0.9) !important;
 }
 
-/* Responsive */
+/* Responsive - smoother transitions with intermediate breakpoints */
+@media (max-width: 1400px) {
+  .scroll-card {
+    width: 350px;
+    height: 350px;
+  }
+
+  .scroll-btn {
+    font-size: 2.5rem !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
 @media (max-width: 1200px) {
   .scroll-card {
     width: 300px;
@@ -74,6 +87,19 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .scroll-card {
+    width: 280px;
+    height: 280px;
+  }
+
+  .scroll-btn {
+    font-size: 1.8rem !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
+
 @media (max-width: 992px) {
   .scroll-card {
     width: 250px;
@@ -84,6 +110,19 @@
     font-size: 1.5rem !important;
     width: 40px !important;
     height: 40px !important;
+  }
+}
+
+@media (max-width: 880px) {
+  .scroll-card {
+    width: 220px;
+    height: 220px;
+  }
+
+  .scroll-btn {
+    font-size: 1.3rem !important;
+    width: 37px !important;
+    height: 37px !important;
   }
 }
 
@@ -101,6 +140,20 @@
   }
 }
 
+@media (max-width: 600px) {
+  .scroll-card {
+    width: 170px;
+    height: 170px;
+    margin: 0 6px !important;
+  }
+
+  .scroll-btn {
+    font-size: 1rem !important;
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
 @media (max-width: 480px) {
   .scroll-card {
     width: 150px;
@@ -112,5 +165,19 @@
     font-size: 1rem !important;
     width: 30px !important;
     height: 30px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .scroll-card {
+    width: 130px;
+    height: 130px;
+    margin: 0 4px !important;
+  }
+
+  .scroll-btn {
+    font-size: 0.8rem !important;
+    width: 28px !important;
+    height: 28px !important;
   }
 }
