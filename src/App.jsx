@@ -33,6 +33,8 @@ import Shop from "./components/Shop.jsx";
 import OrderDetails from "./components/OrderDetails.jsx";
 //Auto-Fetcher to stop Backend form Sleeping
 import { useProductsAutoFetch } from "./hooks/useFetchInterval";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import NotFound from "./components/NotFound.jsx";
 // Home component (kept separate)
 function Home() {
   const [auth, setAuth] = useState({
@@ -83,74 +85,78 @@ function AppContent() {
   const shouldShowFilters = !isMobile || showFilters;
   return (
     <>
-      <ScrollToTop />
-      <NavBar />
-      <div style={{ backgroundColor: "#f8f9fa" }}>
-        <CategoriesNav
-          toggleFilters={toggleFilters}
-          showFilters={showFilters}
-        />
-      </div>
+      <ErrorBoundary>
+        <ScrollToTop />
+        <NavBar />
+        <div style={{ backgroundColor: "#f8f9fa" }}>
+          <CategoriesNav
+            toggleFilters={toggleFilters}
+            showFilters={showFilters}
+          />
+        </div>
 
-      <Routes>
-        <Route
-          path="/"
-          element={token ? <Navigate to="/dashboard" /> : <Home />}
-        />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/Shop/:type"
-          element={
-            <Shop
-              showFilters={showFilters}
-              toggleFilters={toggleFilters}
-              shouldShowFilters={shouldShowFilters}
-            />
-          }
-        />{" "}
-        <Route
-          path="/order-details/:orderId"
-          element={
-            <ProtectedRoute>
-              <OrderDetails />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
-        {/* Category pages */}
-        <Route path="/Redirect" element={<Redirect />} />
-        <Route path="/Men" element={<MenPage />} />
-        <Route path="/Women" element={<WomenPage />} />
-        <Route path="/Kids" element={<KidsPage />} />
-        <Route path="/Beauty" element={<BeautyPage />} />
-        <Route path="/Home" element={<HomePage />} />
-        <Route path="/Electronics" element={<ElectronicsPage />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/ProductDetails" element={<ProductDetails />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/Chatbot" element={<Chatbot />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={token ? <Navigate to="/dashboard" /> : <Home />}
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/Shop/:type"
+            element={
+              <Shop
+                showFilters={showFilters}
+                toggleFilters={toggleFilters}
+                shouldShowFilters={shouldShowFilters}
+              />
+            }
+          />{" "}
+          <Route
+            path="/order-details/:orderId"
+            element={
+              <ProtectedRoute>
+                <OrderDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+          {/* Category pages */}
+          <Route path="/Redirect" element={<Redirect />} />
+          <Route path="/Men" element={<MenPage />} />
+          <Route path="/Women" element={<WomenPage />} />
+          <Route path="/Kids" element={<KidsPage />} />
+          <Route path="/Beauty" element={<BeautyPage />} />
+          <Route path="/Home" element={<HomePage />} />
+          <Route path="/Electronics" element={<ElectronicsPage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/ProductDetails" element={<ProductDetails />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/Chatbot" element={<Chatbot />} />
+          <Route path="/Error" element={<ErrorBoundary />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
 
-      <Footer />
+        <Footer />
+      </ErrorBoundary>
     </>
   );
 }
