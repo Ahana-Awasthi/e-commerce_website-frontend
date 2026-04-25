@@ -39,8 +39,13 @@ function Home() {
     token: localStorage.getItem("token"),
     userName: localStorage.getItem("userName"),
   });
+  const [products, setProducts] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+
   return (
     <>
+      <NavBar searchInput={searchInput} setSearchInput={setSearchInput} />
+
       <ScrollToTop />
       <ControlledCarousel />
       <ProductGrid />

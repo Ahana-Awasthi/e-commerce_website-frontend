@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       // forward /api requests to your backend
-      "/api": "http://localhost:3000", // or wherever your backend runs
+      "/api": "https://e-commerce-website-backend-d84m.onrender.com", // or wherever your backend runs
     },
   },
 });

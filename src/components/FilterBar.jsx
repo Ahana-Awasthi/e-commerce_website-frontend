@@ -225,6 +225,7 @@ function FilterBar({
   const [pendingColor, setPendingColor] = useState([]);
   const [pendingDiscount, setPendingDiscount] = useState(0);
   const [pendingAvailability, setPendingAvailability] = useState(false);
+
   useEffect(() => {
     setPendingSubCategory(initialSubCategory);
     setAppliedFilters((prev) => ({
@@ -386,17 +387,17 @@ function FilterBar({
       sizes: searchSizes,
       colors: searchColors,
     } = parseSearchArray();
-
+    const isSearching = searchArray.length > 0;
     const filtered = allProducts.filter((product) => {
       // 1. SUBCATEGORY FILTER
       const subMatch =
+        isSearching ||
         !Object.values(appliedFilters.subCategory).some(Boolean) ||
         Object.keys(appliedFilters.subCategory).some(
           (sub) =>
             appliedFilters.subCategory[sub] &&
             normalize(product.subCategory) === normalize(sub),
         );
-
       // 2. SEARCH MATCH - SIMPLIFIED & BULLETPROOF
       const searchMatch =
         searchArray.length === 0 ||
@@ -455,10 +456,13 @@ function FilterBar({
       }
 
       // 5. PRICE MATCH
-      const priceVal = Number(product.price);
-      let priceMatch = priceVal <= appliedFilters.price;
-      if (priceLow !== null) priceMatch = priceMatch && priceVal >= priceLow;
-      if (priceHigh !== null) priceMatch = priceMatch && priceVal <= priceHigh;
+      let priceMatch = isSearching ? true : priceVal <= appliedFilters.price;
+
+      if (!isSearching) {
+        if (priceLow !== null) priceMatch = priceMatch && priceVal >= priceLow;
+        if (priceHigh !== null)
+          priceMatch = priceMatch && priceVal <= priceHigh;
+      }
 
       // 6. OTHER FILTERS
       const discountMatch = product.discount >= appliedFilters.discount;
@@ -506,7 +510,7 @@ function FilterBar({
     setPendingColor([]);
     setPendingDiscount(0);
     setPendingAvailability(false);
-    
+
     setAppliedFilters(cleared);
     setIsFilterActive(false); // 🔥 THIS IS MISSING IN MOST CASES
   };

@@ -14,7 +14,7 @@ export const loginWithGoogle = async () => {
 
     // Call backend login route (no password)
     const loginRes = await axios.post(
-      "http://localhost:3000/api/google-login",
+      "https://e-commerce-website-backend-d84m.onrender.com/api/google-login",
       {
         email,
         uid, // you can use this as unique identifier
@@ -40,7 +40,7 @@ export const signupWithGoogle = async () => {
     const { email, displayName, uid, photoURL } = result.user;
 
     const registerRes = await axios.post(
-      "http://localhost:3000/api/google-register",
+      "https://e-commerce-website-backend-d84m.onrender.com/api/google-register",
       {
         email,
         name: displayName || email.split("@")[0],
