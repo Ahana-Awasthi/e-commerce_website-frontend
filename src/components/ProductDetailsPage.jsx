@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "./Nav";
 import { useCartWishlist } from "../hooks/useCartWishlist";
+import { useAuth } from "../hooks/useAuth";
 import {
   Heart,
   ShoppingCart,
@@ -138,10 +139,9 @@ export default function ProductDetails() {
   const navigate = useNavigate();
   const { addToCart, toggleWishlist, toastMessage, clearToast } =
     useCartWishlist();
+  const { wishlist, setWishlist, cart, setCart } = useAuth();
   const location = useLocation();
   const index = location.state?.index ?? 0;
-  const [cart, setCart] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
   const defaultProduct = {
     index: 0,
     name: "Product Name",
@@ -181,9 +181,15 @@ export default function ProductDetails() {
     colors.length > 0 ? colors[0] : null,
   );
   const [quantity, setQuantity] = useState(1);
-  const [wishlisted, setWishlisted] = useState(false);
+  const [isProductWishlisted, setIsProductWishlisted] = useState(false);
 
   const sizes = product.size ? product.size.split(",") : ["S", "M", "L"];
+
+  // Check if product is in wishlist when component mounts or product changes
+  useEffect(() => {
+    const productId = product._id || product.id;
+    setIsProductWishlisted(wishlist.includes(productId));
+  }, [product, wishlist]);
 
   return (
     <>
@@ -346,25 +352,28 @@ export default function ProductDetails() {
               <Button
                 variant="outline"
                 style={{
-                  border: wishlist.includes(product._id || product.id)
+                  border: isProductWishlisted
                     ? "3px solid #000"
                     : "2px solid grey",
+                  transition: "all 0.3s ease",
                 }}
                 onClick={() =>
                   toggleWishlist(
                     product._id || product.id,
-                    wishlist.includes(product._id || product.id),
+                    isProductWishlisted,
                     setWishlist,
                     navigate,
                   )
                 }
               >
                 <Heart
-                  fill={
-                    wishlist.includes(product._id || product.id)
-                      ? "black"
-                      : "none"
-                  }
+                  size={22}
+                  fill={isProductWishlisted ? "black" : "none"}
+                  stroke={isProductWishlisted ? "black" : "grey"}
+                  style={{
+                    transition: "all 0.3s ease",
+                    transform: isProductWishlisted ? "scale(1.1)" : "scale(1)",
+                  }}
                 />
               </Button>
             </div>
