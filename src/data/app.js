@@ -20,7 +20,6 @@ mongoose.connect(process.env.MONGO_URI)
 
 // --- CORS ---
 app.use(cors()); // Allow all origins (for testing)
-// app.use(cors({ origin: "http://localhost:5173" })); // Restrict in production
 
 // --- view engine setup ---
 app.set('views', path.join(__dirname, 'views'));

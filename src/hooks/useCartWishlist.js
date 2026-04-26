@@ -26,14 +26,17 @@ export const useCartWishlist = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        "https://e-commerce-website-backend-d84m.onrender.com/api/cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ productId }),
         },
-        body: JSON.stringify({ productId }),
-      });
+      );
 
       const data = await res.json();
 
@@ -96,7 +99,7 @@ export const useCartWishlist = () => {
         `${isWishlisted ? "Removing" : "Adding"} product ${productId} ${isWishlisted ? "from" : "to"} wishlist`,
       );
 
-      const res = await fetch("http://localhost:3000/api/wishlist", {
+      const res = await fetch("https://e-commerce-website-backend-d84m.onrender.com/api/wishlist", {
         method: isWishlisted ? "DELETE" : "POST",
         headers: {
           "Content-Type": "application/json",
