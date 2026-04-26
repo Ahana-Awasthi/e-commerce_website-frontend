@@ -207,13 +207,32 @@ The Shopora Team`,
             name,
             email,
             password,
-            phone: phone || "Not provided", // optional
-            address: address || "Not provided", // optional
+            phone: phone || "Not provided",
+            address: address || "Not provided",
           },
         );
 
-        console.log("Registration response:", res.data); // debug
-        showToast("Registration successful! Please login.");
+        console.log("Registration response:", res.data);
+
+        // 🔥 Try to auto-login
+        const { token, user } = res.data;
+
+        if (token && user) {
+          localStorage.setItem("token", token);
+          localStorage.setItem("userName", user.name);
+          localStorage.setItem("userEmail", user.email);
+          localStorage.setItem("userId", user.id);
+
+          window.dispatchEvent(new Event("authChanged"));
+
+          showToast("Account created & logged in!");
+          setTimeout(() => navigate("/dashboard"), 500);
+        } else {
+          // fallback if backend doesn't return token
+          await login(email, password);
+          showToast("Account created & logged in!");
+          setTimeout(() => navigate("/dashboard"), 500);
+        }
         fetch(
           "https://e-commerce-website-backend-d84m.onrender.com/users/welcome-email",
           {

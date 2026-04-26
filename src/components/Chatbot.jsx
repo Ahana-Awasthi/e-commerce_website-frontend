@@ -462,7 +462,7 @@ const Chatbot = () => {
     if (lastFormType === "cancel") {
       // Cancel order - update status to problem:cancel immediately
       if (token && selectedOrder) {
-        axios
+        api
           .post(
             `https://e-commerce-website-backend-d84m.onrender.com/api/cancel-order/${selectedOrder}`,
             { immediate: true },
@@ -482,7 +482,7 @@ const Chatbot = () => {
     ) {
       // Return order - update status to problem:return
       if (token && selectedOrder) {
-        axios
+        api
           .post(
             `https://e-commerce-website-backend-d84m.onrender.com/api/return-order/${selectedOrder}`,
             { reason: formData.orderIssueDes || "" },
@@ -502,7 +502,7 @@ const Chatbot = () => {
     ) {
       // Exchange order - update status to problem:exchange
       if (token && selectedOrder) {
-        axios
+        api
           .post(
             `https://e-commerce-website-backend-d84m.onrender.com/api/exchange-order/${selectedOrder}`,
             { reason: formData.orderIssueDes || "" },

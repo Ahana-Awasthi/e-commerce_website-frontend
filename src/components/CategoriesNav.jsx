@@ -370,7 +370,7 @@ function CategoriesNav({ toggleFilters, showFilters }) {
                 height: 20,
               }}
             >
-              <div style={{ marginLeft: 70, zIndex: 10 }}>
+              <div style={{ marginLeft: 70, zIndex: 10, cursor: "pointer" }}>
                 <i
                   className="fa-solid fa-heart fs-4 mx-4 text-dark pt-3"
                   onClick={() => navigate(token ? "/wishlist" : "/login")}
@@ -404,7 +404,7 @@ function CategoriesNav({ toggleFilters, showFilters }) {
               }}
             >
               {" "}
-              <div style={{ marginLeft: 150 }}>
+              <div style={{ marginLeft: 150, cursor: "pointer" }}>
                 <i
                   className="fa-solid fa-cart-shopping fs-4 text-dark"
                   onClick={() => {
