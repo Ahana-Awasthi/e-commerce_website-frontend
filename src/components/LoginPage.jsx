@@ -273,7 +273,7 @@ The Shopora Team`,
                 type="tel"
                 variant="outlined"
                 fullWidth
-                value="Not provided"
+                value={phone}
                 margin="normal"
                 onChange={(e) => setPhone(e.target.value)}
               />
@@ -285,7 +285,7 @@ The Shopora Team`,
                 variant="outlined"
                 fullWidth
                 margin="normal"
-                value="Not provided"
+                value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
             )}

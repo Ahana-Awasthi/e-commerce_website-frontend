@@ -389,6 +389,8 @@ function FilterBar({
     } = parseSearchArray();
     const isSearching = searchArray.length > 0;
     const filtered = allProducts.filter((product) => {
+      const priceVal = Number(product.price) || 0;
+
       // 1. SUBCATEGORY FILTER
       const subMatch =
         isSearching ||
