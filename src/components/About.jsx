@@ -25,7 +25,7 @@ function AboutPage() {
   const team = {
     ahana: {
       name: "Ahana Awasthi",
-      role: "Founder & CEO",
+      role: "CEO",
       image: team1,
       description:
         "Ahana leads Shopora’s vision and overall strategy. She focuses on building a seamless e-commerce experience, product direction, and long-term brand growth.",
@@ -169,7 +169,7 @@ function AboutPage() {
            <div className="team-member">
              <img src={team1} />
              <h3>Ahana Awasthi</h3>
-             <p>Founder & CEO</p>
+             <p>CEO</p>
              <button
                className="learn-more"
                onClick={() => setActiveMember("ahana")}
