@@ -99,7 +99,7 @@ function ProductGrid() {
                 <img
                   src={product.imageUrl}
                   alt={product.name}
-                  style={{ minWidth: "260px" }}
+                  style={{ minWidth: "260px", height: 500 }}
                   className="product-image"
                 />
                 <div className="product-details">

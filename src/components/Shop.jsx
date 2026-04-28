@@ -16,7 +16,7 @@ function ProductImage({ src, alt }) {
       src={imgSrc}
       alt={alt}
       className="product-image"
-      style={{ minWidth: "200px", height: "100%", minHeight: 350 }}
+      style={{ minWidth: "200px", height: 400, border: "0.5px solid black", borderRadius: "4px" }}
       onError={() => setImgSrc(placeholder)}
       loading="lazy"
     />
@@ -243,7 +243,7 @@ function Shop({ showFilters, toggleFilters, shouldShowFilters }) {
         <div className="card-grid-big">
           {productsToDisplay.length > 0 ? (
             productsToDisplay.map((product, index) => (
-              <div
+              <div 
                 key={product._id || index}
                 className="product-card-container"
                 style={{ position: "relative" }}
@@ -251,7 +251,7 @@ function Shop({ showFilters, toggleFilters, shouldShowFilters }) {
                 {/* Wishlist Button - Top Right */}
                 <button
                   className="wishlist-btn"
-                 
+                  
                   onClick={async (e) => {
                     e.stopPropagation();
 
@@ -327,7 +327,7 @@ function Shop({ showFilters, toggleFilters, shouldShowFilters }) {
                   onClick={() =>
                     navigate("/ProductDetails", { state: { product, index } })
                   }
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", border: "0.8px solid black", borderRadius: "8px" }}
                 >
                   <ProductImage src={product.imageUrl} alt={product.name} />
 
