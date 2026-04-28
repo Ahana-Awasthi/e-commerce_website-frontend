@@ -144,7 +144,7 @@ function CategoriesNav({ toggleFilters, showFilters }) {
       <div
         className="categories-nav bg-dark-subtle"
         style={{
-          marginTop: "10px",
+          marginTop: "8px",
         }}
       >
         <div className="categories-top ">
@@ -207,27 +207,7 @@ function CategoriesNav({ toggleFilters, showFilters }) {
             >
               <i className="fa-solid fa-heart fs-4 mx-4 text-dark"></i>
               {wishlistCount > 0 && (
-                <span
-                  style={{
-                    position: "absolute",
-                    top: "-8px",
-                    right: "-5px",
-                    backgroundColor: "#e74c3c",
-                    color: "white",
-                    borderRadius: "50%",
-                    width: "20px",
-                    height: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "11px",
-                    fontWeight: "bold",
-                    pointerEvents: "none",
-                  }}
-                  className="badge"
-                >
-                  {wishlistCount}
-                </span>
+                <span className="badge">{wishlistCount}</span>
               )}
             </button>
             <button
@@ -416,7 +396,9 @@ function CategoriesNav({ toggleFilters, showFilters }) {
                   }}
                 ></i>
               </div>
-              {cartCount > 0 && <span className="badge-cart">{cartCount}</span>}
+              {cartCount > 0 && (
+                <span className="badge-cart">{cartCount}</span>
+              )}
             </div>
           </div>
         </div>
